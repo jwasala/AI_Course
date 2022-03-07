@@ -1,7 +1,7 @@
 from json import load
 from pathlib import Path
 
-from .Facility import Facility
+from .facility import Facility
 
 
 class FacilityLoader:

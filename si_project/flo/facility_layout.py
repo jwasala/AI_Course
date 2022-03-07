@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from random import randrange
 
-from .Facility import Facility
+from .facility import Facility
 
 
 @dataclass
