@@ -11,7 +11,7 @@ class FacilityLoader:
                                 machines_count: int,
                                 value_key: str) -> list[list[int]]:
         machines = range(machines_count)
-        data = [[None for _ in machines] for _ in machines]
+        data = [[0 for _ in machines] for _ in machines]
         with open(file_path) as flows_file:
             flows_raw: list[dict] = load(flows_file)
             for flow_raw in flows_raw:
@@ -46,9 +46,16 @@ class FacilityLoader:
                       machines_count: int,
                       flow_file_path: Path,
                       costs_file_path: Path) -> Facility:
+        """
+        :param dimensions: width and height of the facility
+        :param machines_count: number of machines
+        :param flow_file_path: path to a JSON file containing flow data
+        :param costs_file_path: path to a JSON file containing costs data
+        :return: Facility object
+        """
         width, height = dimensions
         if machines_count > width * height:
-            raise ValueError("There are too many machines to fit")
+            raise ValueError('There are too many machines to fit')
         flows = cls._load_flows_from_file(flow_file_path, machines_count)
         costs = cls._load_costs_from_file(costs_file_path, machines_count)
         return Facility(dimensions, machines_count, flows, costs)

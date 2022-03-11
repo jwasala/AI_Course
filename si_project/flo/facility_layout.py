@@ -6,6 +6,9 @@ from .facility import Facility
 
 @dataclass
 class FacilityLayout:
+    """
+    Represents a Facility layout (solution to FLO problem).
+    """
     layout: list[tuple[int, int]]
     dimensions: tuple[int, int]
 
@@ -19,6 +22,11 @@ class FacilityLayout:
 
     @classmethod
     def random(cls, dimensions, machines_count) -> 'FacilityLayout':
+        """
+        :param dimensions: width and height of the facility
+        :param machines_count: number of machines
+        :return: FacilityLayout containing random compatible layout
+        """
         width, height = dimensions
         layout = []
         for machine in range(machines_count):
@@ -30,6 +38,10 @@ class FacilityLayout:
         return FacilityLayout(layout, dimensions)
 
     def fitness(self, facility: Facility) -> int:
+        """
+        :param facility: Facility object
+        :return: value of fitness function for a given facility and layout
+        """
         if (facility.width, facility.height) != (self.width, self.height):
             raise ValueError('Facility and FacilityLayout have incompatible '
                              'dimensions')
