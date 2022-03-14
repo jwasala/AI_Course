@@ -1,7 +1,8 @@
 # Facility Layout Optimization.
 from pathlib import Path
 
-from si_project.flo import FacilityLoader, FacilityLayout, Facility
+from si_project.flo import FacilityLoader, FacilityLayout, Facility, \
+    GeneticAlgorithm
 
 if __name__ == '__main__':
     root_path = Path(__file__).parent.parent.resolve()
@@ -16,9 +17,11 @@ if __name__ == '__main__':
         flow_file_path=easy_flow_path,
         costs_file_path=easy_cost_path)
 
-    # Random layout
-    random_layout = FacilityLayout.random((1, 12), 12)
+    ga = GeneticAlgorithm(
+        population_size=200,
+        facility=facility,
+        tournament_size=5,
+        mutation_prob=0.25,
+        selection_size=30)
 
-    # Read fitness value
-    print(f'Fitness function value for random layout: '
-          f'{random_layout.fitness(facility)}')
+    ga.run(number_of_generations=1000)
