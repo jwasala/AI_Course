@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from random import choice, uniform, random, randrange
+from statistics import stdev
 
 from si_project.flo import FacilityLayout, Facility
 
@@ -22,9 +23,22 @@ class Population:
                    key=lambda layout: layout.fitness(self.facility))
 
     @property
+    def worst_layout(self) -> FacilityLayout:
+        """
+        :return: worst FacilityLayout (by highest fitness value).
+        """
+        return max(self.layouts,
+                   key=lambda layout: layout.fitness(self.facility))
+
+    @property
     def avg_fitness(self) -> float:
         return sum([layout.fitness(self.facility) for layout in
                     self.layouts]) / len(self.layouts)
+
+    @property
+    def std_fitness(self) -> float:
+        return stdev([layout.fitness(self.facility) for layout in
+                      self.layouts])
 
     def merge(self, other: 'Population') -> 'Population':
         if self.facility is not other.facility:

@@ -21,6 +21,6 @@ if __name__ == '__main__':
         facility=facility,
         tournament_size=50,
         mutation_prob=0.1,
-        selection_size=150)
+        selection_size=50)
 
-    ga.run(number_of_generations=1000)
+    ga.run()

@@ -29,12 +29,11 @@ class GeneticAlgorithm:
         last_generation = self.generations[-1]
 
         # Pick from last generation
-        # selected_layouts: list[FacilityLayout] = []
+        selected_layouts: list[FacilityLayout] = []
         # while len(selected_layouts) < self.selection_size:
-        # selection = last_generation.roulette_selection()
-        # selection = last_generation.tournament_selection(self.tournament_size)
-        # if selection not in selected_layouts:
-        #     selected_layouts.append(selection)
+        #     selection = last_generation.roulette_selection()
+        #     if selection not in selected_layouts:
+        #         selected_layouts.append(selection)
         selected_layouts: list[FacilityLayout] = last_generation\
             .tournament_selection(self.tournament_size)
 
@@ -53,21 +52,16 @@ class GeneticAlgorithm:
         new_generation = new_generation.mutation(self.mutation_prob)
         self.generations.append(new_generation)
 
-    def run(self, number_of_generations: int):
-        if len(self.generations) > 1:
-            raise ValueError('Algorithm can be run only once')
+    def run(self):
         i = 0
         try:
             while True:
                 avg = self.generations[-1].avg_fitness
                 best = self.generations[-1].best_layout.fitness(self.facility)
+                worst = self.generations[-1].worst_layout.fitness(self.facility)
+                std = self.generations[-1].std_fitness
                 self.create_new_generation()
-                # if len(self.generations) >= 2 and \
-                #         self.generations[-1].avg_fitness \
-                #         > self.generations[-2].avg_fitness:
-                #     self.generations.pop()
-                # else:
-                print(f'Generation {i}, avg = {avg}, best = {best}')
+                print(f'Generation {i}, avg = {avg}, best = {best}, worst = {worst}, std = {std}')
                 i += 1
         except KeyboardInterrupt as ke:
             print('Interrupted')

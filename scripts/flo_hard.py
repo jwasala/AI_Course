@@ -1,8 +1,7 @@
 # Facility Layout Optimization.
 from pathlib import Path
 
-from si_project.flo import FacilityLoader, FacilityLayout, Facility, \
-    GeneticAlgorithm
+from si_project.flo import FacilityLoader, Facility, GeneticAlgorithm
 
 if __name__ == '__main__':
     root_path = Path(__file__).parent.parent.resolve()
@@ -24,4 +23,4 @@ if __name__ == '__main__':
         mutation_prob=0.05,
         selection_size=500)
 
-    ga.run(number_of_generations=1000)
+    ga.run()
