@@ -1,18 +1,19 @@
-from .problem import Problem
+from .problem import Problem, Variable
 
 
-def _bt_search(a, u, problem: Problem):
-    if not u:
-        return tuple(a)
-    var, u = u[0], u[1:]
+def _bt_search(assigned_vars: list[Variable], unassigned_vars: list[Variable],
+               problem: Problem):
+    if not unassigned_vars:
+        return tuple(assigned_vars)
+    var, unassigned_vars = unassigned_vars[0], unassigned_vars[1:]
     for val in problem.domain:
-        if problem.is_consistent(a, var[0], val):
+        if problem.is_consistent(assigned_vars, var[0], val):
             var = (var[0], val)
-            a.append(var)
-            result = _bt_search(a, u, problem)
+            assigned_vars.append(var)
+            result = _bt_search(assigned_vars, unassigned_vars, problem)
             if result:
                 return result
-            a.pop()
+            assigned_vars.pop()
     return None
 
 
