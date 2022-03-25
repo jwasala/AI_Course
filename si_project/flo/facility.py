@@ -12,6 +12,9 @@ class Facility:
     flows: list[list[int]]
     costs: list[list[int]]
 
+    def __hash__(self):
+        return hash(f'{self.dimensions}{self.machines_count}{self.flows}{self.costs}')
+
     @property
     def width(self) -> int:
         return self.dimensions[0]

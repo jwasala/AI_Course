@@ -34,7 +34,7 @@ class GeneticAlgorithm:
         #     selection = last_generation.roulette_selection()
         #     if selection not in selected_layouts:
         #         selected_layouts.append(selection)
-        selected_layouts: list[FacilityLayout] = last_generation\
+        selected_layouts: list[FacilityLayout] = last_generation \
             .tournament_selection(self.tournament_size)
 
         # Generate children
@@ -52,17 +52,35 @@ class GeneticAlgorithm:
         new_generation = new_generation.mutation(self.mutation_prob)
         self.generations.append(new_generation)
 
-    def run(self):
-        i = 0
+    def run(self, generations: int):
+        best_all_time = None
         try:
-            while True:
+            for i in range(generations):
                 avg = self.generations[-1].avg_fitness
-                best = self.generations[-1].best_layout.fitness(self.facility)
-                worst = self.generations[-1].worst_layout.fitness(self.facility)
+                best = self.generations[-1].best_layout
+                if not best_all_time or best_all_time.fitness(self.facility) > best.fitness(self.facility):
+                    best_all_time = best
+                worst = self.generations[-1].worst_layout.fitness(
+                    self.facility)
                 std = self.generations[-1].std_fitness
                 self.create_new_generation()
-                print(f'Generation {i}, avg = {avg}, best = {best}, worst = {worst}, std = {std}')
+                print(f'Generation {i}, avg = {avg}, best = '
+                      f'{best.fitness(self.facility)}, worst = {worst}, std = '
+                      f'{std}, best_all_time = '
+                      f'{best_all_time.fitness(self.facility)}')
                 i += 1
         except KeyboardInterrupt as ke:
             print('Interrupted')
             exit(1)
+        print(f'{best_all_time.fitness(self.facility)} {best_all_time.layout}')
+        return best_all_time
+
+    def run_random(self, iterations: int):
+        best: FacilityLayout = None
+        for i in range(iterations):
+            random_layout = FacilityLayout.random(self.facility.dimensions,
+                                                  self.facility.machines_count)
+            if not best or best.fitness(self.facility) > random_layout.fitness(self.facility):
+                best = random_layout
+        print(f'{best.fitness(self.facility)} {best.layout}')
+        return best

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import cache
 from random import randrange
 
 from .facility import Facility
@@ -6,6 +7,9 @@ from .facility import Facility
 
 @dataclass
 class FacilityLayout:
+    def __hash__(self):
+        return hash(str(self.layout))
+
     """
     Represents a Facility layout (solution to FLO problem).
     """
@@ -37,6 +41,7 @@ class FacilityLayout:
                     break
         return FacilityLayout(layout, dimensions)
 
+    @cache
     def fitness(self, facility: Facility) -> int:
         """
         :param facility: Facility object

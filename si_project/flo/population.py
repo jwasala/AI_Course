@@ -66,7 +66,7 @@ class Population:
         return selections
 
     def roulette_selection(self) -> FacilityLayout:
-        fits = [1 / layout.fitness(self.facility) for layout in self.layouts]
+        fits = [1 / layout.fitness(self.facility) ** 5 for layout in self.layouts]
         pick = uniform(0, sum(fits))
         for i, fit in enumerate(fits):
             pick -= fit

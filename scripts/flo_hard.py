@@ -23,4 +23,4 @@ if __name__ == '__main__':
         mutation_prob=0.05,
         selection_size=500)
 
-    ga.run()
+    ga.run(100)
