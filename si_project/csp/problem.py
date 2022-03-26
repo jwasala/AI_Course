@@ -1,4 +1,5 @@
 import copy
+from typing import Iterable
 
 Variable = tuple[tuple[int, int], int | None]
 
@@ -14,7 +15,7 @@ class Problem:
     def print_matrix(self):
         pass
 
-    def print_merged_matrix(self, assigned_vars: list[Variable]):
+    def print_merged_matrix(self, assigned_vars: Iterable[Variable]):
         pass
 
     def generate_unassigned_vars(self):

@@ -1,6 +1,10 @@
 from .problem import Problem, Variable
 
 
+# Not thread safe :(
+_solutions_count = 0
+
+
 def _bt_search(assigned_vars: list[Variable], unassigned_vars: list[Variable],
                problem: Problem):
     if not unassigned_vars:
@@ -12,13 +16,17 @@ def _bt_search(assigned_vars: list[Variable], unassigned_vars: list[Variable],
             assigned_vars.append(var)
             result = _bt_search(assigned_vars, unassigned_vars, problem)
             if result:
-                return result
+                global _solutions_count
+                _solutions_count += 1
+                print(f'Solution {_solutions_count}:')
+                problem.print_merged_matrix(result)
             assigned_vars.pop()
     return None
 
 
 def bt_search(problem: Problem):
+    global _solutions_count
+    _solutions_count = 0
     a = []
     u = problem.generate_unassigned_vars()
-    result = _bt_search(a, u, problem)
-    problem.print_merged_matrix(result)
+    _bt_search(a, u, problem)
