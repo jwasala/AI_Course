@@ -12,11 +12,12 @@ class Problem:
                       next_coord: tuple[int, int], next_val: int):
         pass
 
-    def print_matrix(self):
+    def print_matrix(self, matrix=None):
         pass
 
     def print_merged_matrix(self, assigned_vars: Iterable[Variable]):
-        pass
+        merged = self._merge_matrix(assigned_vars)
+        return self.print_matrix(merged)
 
     def generate_unassigned_vars(self):
         u: list[Variable] = []
@@ -26,13 +27,13 @@ class Problem:
                     u.append(((i, j), None))
         return u
 
-    def _merge_matrix(self, assigned_vars: list[Variable]):
+    def _merge_matrix(self, assigned_vars: Iterable[Variable]):
         mtx = copy.deepcopy(self.matrix)
         for (i, j), val in assigned_vars:
             mtx[i][j] = val
         return mtx
 
-    def merge_matrix(self, assigned_vars: list[Variable],
+    def merge_matrix(self, assigned_vars: Iterable[Variable],
                      next_var: tuple[int, int], next_val: int):
         return self._merge_matrix([*assigned_vars, (next_var, next_val)])
 

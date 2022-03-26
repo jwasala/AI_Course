@@ -10,13 +10,10 @@ class BinaryGame(Problem):
         self.domain: list[int] = [0, 1]
         self.size: int = size
 
-    def print_matrix(self):
-        for row in self.matrix:
-            print(*[cell if cell is not None else 'x' for cell in row])
-
-    def print_merged_matrix(self, assigned_vars: list[Variable]):
-        merged = self._merge_matrix(assigned_vars)
-        for row in merged:
+    def print_matrix(self, matrix=None):
+        if not matrix:
+            matrix = self.matrix
+        for row in matrix:
             print(*[cell if cell is not None else 'x' for cell in row])
 
     def is_consistent(self, assigned_vars: list[Variable],
