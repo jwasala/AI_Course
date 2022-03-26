@@ -1,3 +1,5 @@
+from typing import Iterable, Callable
+
 from .problem import Problem, Variable
 
 
@@ -10,16 +12,9 @@ class BinaryGame(Problem):
         self.domain: list[int] = [0, 1]
         self.size: int = size
 
-    def print_matrix(self, matrix=None):
-        if not matrix:
-            matrix = self.matrix
-        for row in matrix:
-            print(*[cell if cell is not None else 'x' for cell in row])
-
-    def is_consistent(self, assigned_vars: list[Variable],
-                      next_var: tuple[int, int], next_val: int) -> bool:
-        mtx = self.merge_matrix(assigned_vars, next_var, next_val)
-        checks = (
+    @property
+    def checks(self) -> Iterable[Callable]:
+        return (
             self._check_row_symmetry,
             self._check_col_symmetry,
             self._check_row_triples,
@@ -27,10 +22,12 @@ class BinaryGame(Problem):
             self._check_row_uniqueness,
             self._check_col_uniqueness
         )
-        for check in checks:
-            if not check(mtx):
-                return False
-        return True
+
+    def print_matrix(self, matrix=None):
+        if not matrix:
+            matrix = self.matrix
+        for row in matrix:
+            print(*[cell if cell is not None else 'x' for cell in row])
 
     def _check_domain(self, matrix) -> bool:
         for row in matrix:

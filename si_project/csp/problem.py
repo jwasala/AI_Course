@@ -1,5 +1,5 @@
 import copy
-from typing import Iterable
+from typing import Iterable, Callable
 
 Variable = tuple[tuple[int, int], int | None]
 
@@ -8,9 +8,17 @@ class Problem:
     domain: list[int]
     matrix: list[list[int | None]]
 
+    @property
+    def checks(self) -> Iterable[Callable]:
+        pass
+
     def is_consistent(self, assigned_vars: list[Variable],
                       next_coord: tuple[int, int], next_val: int):
-        pass
+        mtx = self.merge_matrix(assigned_vars, next_coord, next_val)
+        for check in self.checks:
+            if not check(mtx):
+                return False
+        return True
 
     def print_matrix(self, matrix=None):
         pass

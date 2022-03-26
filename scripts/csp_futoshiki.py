@@ -12,7 +12,7 @@ if __name__ == '__main__':
             fg = FutoshikiGameLoader.load(
                 s,
                 assets_path / 'binary-futoshiki_dane_v1.0' / f'futoshiki_{s}x{s}')
-            fg.print_matrix()
+            bt_search(fg)
     except KeyboardInterrupt:
         print('Interrupted')
         exit(1)
