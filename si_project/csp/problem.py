@@ -31,7 +31,7 @@ class Problem:
         u: list[Variable] = []
         for i, row in enumerate(self.matrix):
             for j, cell in enumerate(row):
-                if not cell:
+                if cell is None:
                     u.append(((i, j), None))
         return u
 
