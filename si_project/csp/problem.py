@@ -9,7 +9,10 @@ class Problem:
     matrix: list[list[int | None]]
 
     @property
-    def checks(self) -> Iterable[Callable]:
+    def checks(self) -> Iterable[Callable[[], bool]]:
+        pass
+
+    def print_matrix(self, matrix=None):
         pass
 
     def is_consistent(self, assigned_vars: list[Variable],
@@ -19,9 +22,6 @@ class Problem:
             if not check(mtx):
                 return False
         return True
-
-    def print_matrix(self, matrix=None):
-        pass
 
     def print_merged_matrix(self, assigned_vars: Iterable[Variable]):
         merged = self._merge_matrix(assigned_vars)

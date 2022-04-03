@@ -1,7 +1,7 @@
 import itertools
 from typing import Iterable, Callable
 
-from .problem import Problem, Variable
+from .problem import Problem
 
 
 class FutoshikiGame(Problem):
