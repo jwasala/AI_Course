@@ -1,10 +1,15 @@
-import itertools
-from typing import Iterable, Callable
+from copy import deepcopy
+from functools import cached_property
+from itertools import product, combinations, chain
+from operator import ne, gt, lt
+from typing import Callable
 
 from .problem import Problem
 
 
 class FutoshikiGame(Problem):
+    Variable = [tuple[int, int], int]
+
     def __init__(self, size: int):
         self.size = size
         self.domain = list(range(1, size + 1))
@@ -15,58 +20,61 @@ class FutoshikiGame(Problem):
         self.horizontal_constraints: list[list[str | None]] = \
             [[None for _ in range(size - 1)] for _ in range(size)]
 
-    @property
-    def checks(self) -> Iterable[Callable]:
-        return (
-            self._check_row_elems_uniqueness,
-            self._check_horizontal_constraints,
-            self._check_vertical_constraints,
-            self._check_col_elems_uniqueness
-        )
+    @cached_property
+    def variables(self) -> list[tuple[int, int]]:
+        return list(product(range(self.size), repeat=2))
 
-    def _check_row_elems_uniqueness(self, matrix) -> bool:
-        for i in range(len(matrix)):
-            elems = [el for el in matrix[i] if el is not None]
-            if len(elems) != len(set(elems)):
-                return False
-        return True
+    @cached_property
+    def domains(self) -> dict[tuple[int, int], list[int]]:
+        base_domain = list(range(1, self.size + 1))
+        return {(i, j): base_domain if self.matrix[i][j] is None else [self.matrix[i][j]] for i, j in self.variables}
 
-    def _check_col_elems_uniqueness(self, matrix) -> bool:
-        return self._check_row_elems_uniqueness(list(zip(*matrix)))
+    @cached_property
+    def constraints(self) -> dict[tuple[tuple[int, int], tuple[int, int]], list[Callable[[Variable, Variable], bool]]]:
+        c = {pair: [] for pair in product(self.variables, repeat=2)}
 
-    def _check_vertical_constraints(self, matrix):
-        for i in range(self.size - 1):
-            for j in range(self.size):
-                if None not in (self.vertical_constraints[i][j],
-                                matrix[i][j], matrix[i + 1][j]):
-                    if self.vertical_constraints[i][j] == '>':
-                        if matrix[i][j] <= matrix[i + 1][j]:
-                            return False
-                    else:
-                        if matrix[i][j] >= matrix[i + 1][j]:
-                            return False
-        return True
+        def values_ne(v1, v2):
+            return v1[1] != v2[1]
 
-    def _check_horizontal_constraints(self, matrix):
+        def values_lt(v1, v2):
+            return v1[1] < v2[1]
+
+        def values_gt(v1, v2):
+            return v1[1] > v2[1]
+
+        # Row and col internal uniqueness
         for i in range(self.size):
-            for j in range(self.size - 1):
-                if None not in (self.horizontal_constraints[i][j],
-                                matrix[i][j], matrix[i][j + 1]):
-                    if self.horizontal_constraints[i][j] == '>':
-                        if matrix[i][j] <= matrix[i][j + 1]:
-                            return False
-                    else:
-                        if matrix[i][j] >= matrix[i][j + 1]:
-                            return False
-        return True
+            for j1, j2 in product(range(self.size), repeat=2):
+                c[((i, j1), (i, j2))].append(values_ne)
+                c[((i, j2), (i, j1))].append(values_ne)
+                c[((j1, i), (j2, i))].append(values_ne)
+                c[((j2, i), (j1, i))].append(values_ne)
 
-    def print_matrix(self, matrix=None):
-        if not matrix:
-            matrix = self.matrix
+        # Horizontal constraints
+        for i, row in enumerate(self.horizontal_constraints):
+            for j, constr in enumerate(row):
+                if constr is not None:
+                    c[((i, j), (i, j + 1))].append(values_gt if constr == '>' else values_lt)
+                    c[((i, j + 1), (i, j))].append(values_lt if constr == '>' else values_gt)
+
+        # Vertical constraints
+        for i, row in enumerate(self.vertical_constraints):
+            for j, constr in enumerate(row):
+                if constr is not None:
+                    c[((i, j), (i + 1, j))].append(values_gt if constr == '>' else values_lt)
+                    c[((i + 1, j), (i, j))].append(values_lt if constr == '>' else values_gt)
+        return c
+
+    def print_with_assigned_variables(self, assigned_variables: dict[tuple[int, int], int]):
+        matrix = deepcopy(self.matrix)
+        for i in range(self.size):
+            for j in range(self.size):
+                if (i, j) in assigned_variables:
+                    matrix[i][j] = assigned_variables[(i, j)]
         for i in range(self.size):
             # Print row, without last elem but with following constr.
             line = zip([num if num is not None else 'x' for num in matrix[i]], [ch if ch is not None else '-' for ch in self.horizontal_constraints[i]])
-            line = list(itertools.chain(*line)) + [(matrix[i][-1] if matrix[i][-1] is not None else 'x')]
+            line = list(chain(*line)) + [(matrix[i][-1] if matrix[i][-1] is not None else 'x')]
             print(*line)
             # Print vertical constraints.
             if i != self.size - 1:

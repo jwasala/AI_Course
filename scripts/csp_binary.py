@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from si_project.csp import BinaryGameLoader, bt_fc_search
+from si_project.csp import BinaryGameLoader, BTSearch
 
 if __name__ == '__main__':
     root_path = Path(__file__).parent.parent.resolve()
@@ -12,7 +12,7 @@ if __name__ == '__main__':
             bg = BinaryGameLoader.load(
                 s,
                 assets_path / 'binary-futoshiki_dane_v1.0' / f'binary_{s}x{s}')
-            bt_fc_search(bg)
+            BTSearch.bt_search(bg)
     except KeyboardInterrupt:
         print('Interrupted')
         exit(1)

@@ -1,47 +1,43 @@
-import copy
-from typing import Iterable, Callable
+from abc import ABC, abstractmethod
+from functools import cached_property
+from typing import TypeVar, Generic, Callable
 
-Variable = tuple[tuple[int, int], int | None]
+VLabel = TypeVar('VLabel')
+VValue = TypeVar('VValue')
 
 
-class Problem:
-    domain: list[int]
-    matrix: list[list[int | None]]
+class Problem(ABC, Generic[VLabel, VValue]):
+    Variable = tuple[VLabel, VValue]
 
-    @property
-    def checks(self) -> Iterable[Callable[[], bool]]:
+    @cached_property
+    @abstractmethod
+    def variables(self) -> list[VLabel]:
         pass
 
-    def print_matrix(self, matrix=None):
+    @cached_property
+    @abstractmethod
+    def domains(self) -> dict[VLabel, list[VValue]]:
         pass
 
-    def is_consistent(self, assigned_vars: list[Variable],
-                      next_coord: tuple[int, int], next_val: int):
-        mtx = self.merge_matrix(assigned_vars, next_coord, next_val)
-        for check in self.checks:
-            if not check(mtx):
-                return False
+    @cached_property
+    @abstractmethod
+    def constraints(self) -> dict[tuple[VLabel, VLabel], list[Callable[[Variable, Variable], bool]]]:
+        pass
+
+    def check_constraints(self, current_variable: Variable, assigned_variables: dict[VLabel, VValue]):
+        current_label, current_val = current_variable
+        for other_label, constraints in ((v2, c) for (v1, v2), c in self.constraints.items() if v1 == current_label):
+            if other_label in assigned_variables:
+                other_val = assigned_variables[other_label]
+                if not all(constr(current_variable, (other_label, other_val)) for constr in constraints):
+                    return False
+        for other_label, constraints in ((v1, c) for (v1, v2), c in self.constraints.items() if v2 == current_label):
+            if other_label in assigned_variables:
+                other_val = assigned_variables[other_label]
+                if not all(constr((other_label, other_val), current_variable) for constr in constraints):
+                    return False
         return True
 
-    def print_merged_matrix(self, assigned_vars: Iterable[Variable]):
-        merged = self._merge_matrix(assigned_vars)
-        return self.print_matrix(merged)
-
-    def generate_unassigned_vars(self):
-        u: list[Variable] = []
-        for i, row in enumerate(self.matrix):
-            for j, cell in enumerate(row):
-                if cell is None:
-                    u.append(((i, j), None))
-        return u
-
-    def _merge_matrix(self, assigned_vars: Iterable[Variable]):
-        mtx = copy.deepcopy(self.matrix)
-        for (i, j), val in assigned_vars:
-            mtx[i][j] = val
-        return mtx
-
-    def merge_matrix(self, assigned_vars: Iterable[Variable],
-                     next_var: tuple[int, int], next_val: int):
-        return self._merge_matrix([*assigned_vars, (next_var, next_val)])
-
+    @abstractmethod
+    def print_with_assigned_variables(self, assigned_variables: dict[VLabel, VValue]):
+        pass

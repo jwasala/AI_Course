@@ -1,5 +1,5 @@
 Size = 4
-Solution 1 found (after backtracking from 57 nodes):
+
 3 > 1 - 4 - 2
 -   -   -   -
 2 < 4 - 3 > 1
@@ -8,7 +8,7 @@ Solution 1 found (after backtracking from 57 nodes):
 <   -   -   -
 4 - 2 > 1 < 3
 Size = 5
-Solution 1 found (after backtracking from 261 nodes):
+
 2 - 3 - 1 - 4 < 5
 -   -   -   -   -
 4 > 1 - 3 < 5 - 2
@@ -19,7 +19,7 @@ Solution 1 found (after backtracking from 261 nodes):
 -   -   -   -   -
 3 - 2 < 5 - 1 - 4
 Size = 6
-Solution 1 found (after backtracking from 171296 nodes):
+
 1 - 3 - 6 - 2 - 4 < 5
 -   -   -   <   -   -
 5 - 4 - 1 - 3 - 2 - 6
@@ -31,7 +31,7 @@ Solution 1 found (after backtracking from 171296 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 4 > 1 - 3
-Solution 2 found (after backtracking from 172037 nodes):
+
 1 - 3 - 6 - 2 - 4 < 5
 -   -   -   <   -   -
 5 - 4 - 2 - 3 - 1 - 6
@@ -43,7 +43,7 @@ Solution 2 found (after backtracking from 172037 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 4 > 2 - 3
-Solution 3 found (after backtracking from 303030 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 4 - 3 - 1 - 5 - 2 - 6
@@ -55,7 +55,7 @@ Solution 3 found (after backtracking from 303030 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 4 found (after backtracking from 303588 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 4 - 3 - 2 - 5 - 1 - 6
@@ -67,7 +67,7 @@ Solution 4 found (after backtracking from 303588 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 5 found (after backtracking from 307507 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 5 - 2 - 1 - 3 - 6 - 4
@@ -79,7 +79,7 @@ Solution 5 found (after backtracking from 307507 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 3 - 5 - 2 < 4 > 1 - 6
-Solution 6 found (after backtracking from 309042 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 5 - 3 - 1 - 4 - 2 - 6
@@ -91,7 +91,7 @@ Solution 6 found (after backtracking from 309042 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 7 found (after backtracking from 309830 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 5 - 3 - 2 - 4 - 1 - 6
@@ -103,7 +103,7 @@ Solution 7 found (after backtracking from 309830 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 8 found (after backtracking from 314412 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 6 - 3 - 1 - 5 - 2 - 4
@@ -115,7 +115,7 @@ Solution 8 found (after backtracking from 314412 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 9 found (after backtracking from 314984 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 6 - 3 - 2 - 5 - 1 - 4
@@ -127,7 +127,7 @@ Solution 9 found (after backtracking from 314984 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 4 - 5 - 1 < 3 > 2 - 6
-Solution 10 found (after backtracking from 315927 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 6 - 5 - 1 - 3 - 2 - 4
@@ -139,7 +139,7 @@ Solution 10 found (after backtracking from 315927 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 3 - 2 < 4 > 1 - 6
-Solution 11 found (after backtracking from 316888 nodes):
+
 1 - 4 - 6 - 2 - 3 < 5
 -   -   -   <   -   -
 6 - 5 - 2 - 3 - 1 - 4
@@ -151,7 +151,7 @@ Solution 11 found (after backtracking from 316888 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 12 found (after backtracking from 422813 nodes):
+
 1 - 5 - 4 - 2 - 3 < 6
 -   -   -   <   -   -
 3 - 2 - 1 - 5 - 6 - 4
@@ -163,7 +163,7 @@ Solution 12 found (after backtracking from 422813 nodes):
 5 - 3 < 6 - 4 - 2 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 13 found (after backtracking from 472467 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 3 - 2 - 1 - 4 - 6 - 5
@@ -175,7 +175,7 @@ Solution 13 found (after backtracking from 472467 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 14 found (after backtracking from 480415 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 4 - 3 - 1 - 5 - 2 - 6
@@ -187,7 +187,7 @@ Solution 14 found (after backtracking from 480415 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 15 found (after backtracking from 481216 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 4 - 3 - 2 - 5 - 1 - 6
@@ -199,7 +199,7 @@ Solution 15 found (after backtracking from 481216 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 16 found (after backtracking from 484954 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 5 - 3 - 1 - 4 - 2 - 6
@@ -211,7 +211,7 @@ Solution 16 found (after backtracking from 484954 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 17 found (after backtracking from 485657 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 5 - 3 - 2 - 4 - 1 - 6
@@ -223,7 +223,7 @@ Solution 17 found (after backtracking from 485657 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 18 found (after backtracking from 486593 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 5 - 4 - 1 - 3 - 2 - 6
@@ -235,7 +235,7 @@ Solution 18 found (after backtracking from 486593 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 3 - 2 < 4 > 1 - 5
-Solution 19 found (after backtracking from 487382 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 5 - 4 - 2 - 3 - 1 - 6
@@ -247,7 +247,7 @@ Solution 19 found (after backtracking from 487382 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 3 - 1 < 4 > 2 - 5
-Solution 20 found (after backtracking from 492134 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 6 - 3 - 1 - 4 - 2 - 5
@@ -259,7 +259,7 @@ Solution 20 found (after backtracking from 492134 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 21 found (after backtracking from 492827 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 6 - 3 - 2 - 4 - 1 - 5
@@ -271,7 +271,7 @@ Solution 21 found (after backtracking from 492827 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 22 found (after backtracking from 494010 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 6 - 4 - 1 - 3 - 2 - 5
@@ -283,7 +283,7 @@ Solution 22 found (after backtracking from 494010 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 3 - 2 < 4 > 1 - 6
-Solution 23 found (after backtracking from 494910 nodes):
+
 1 - 5 - 6 - 2 - 3 < 4
 -   -   -   <   -   -
 6 - 4 - 2 - 3 - 1 - 5
@@ -295,7 +295,7 @@ Solution 23 found (after backtracking from 494910 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 24 found (after backtracking from 850118 nodes):
+
 2 - 4 - 6 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -307,7 +307,7 @@ Solution 24 found (after backtracking from 850118 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 25 found (after backtracking from 851698 nodes):
+
 2 - 4 - 6 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -319,7 +319,7 @@ Solution 25 found (after backtracking from 851698 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 26 found (after backtracking from 853391 nodes):
+
 2 - 4 - 6 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 4 - 2 - 6 - 3
@@ -331,7 +331,7 @@ Solution 26 found (after backtracking from 853391 nodes):
 6 - 2 < 3 - 5 - 1 - 4
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 27 found (after backtracking from 871440 nodes):
+
 2 - 4 - 6 - 1 - 3 < 5
 -   -   -   <   -   -
 5 - 3 - 1 - 2 - 6 - 4
@@ -343,7 +343,7 @@ Solution 27 found (after backtracking from 871440 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 1 - 5 - 3 < 4 > 2 - 6
-Solution 28 found (after backtracking from 979223 nodes):
+
 2 - 5 - 4 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 3 - 2 - 5 - 6 - 4
@@ -355,7 +355,7 @@ Solution 28 found (after backtracking from 979223 nodes):
 5 - 2 < 6 - 4 - 1 - 3
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 29 found (after backtracking from 1031160 nodes):
+
 2 - 5 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 6 - 5
@@ -367,7 +367,7 @@ Solution 29 found (after backtracking from 1031160 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 30 found (after backtracking from 1036673 nodes):
+
 2 - 5 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -379,7 +379,7 @@ Solution 30 found (after backtracking from 1036673 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 31 found (after backtracking from 1038385 nodes):
+
 2 - 5 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -391,7 +391,7 @@ Solution 31 found (after backtracking from 1038385 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 32 found (after backtracking from 1406162 nodes):
+
 3 - 4 - 6 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -403,7 +403,7 @@ Solution 32 found (after backtracking from 1406162 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 33 found (after backtracking from 1407930 nodes):
+
 3 - 4 - 6 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -415,7 +415,7 @@ Solution 33 found (after backtracking from 1407930 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 3 - 2 < 4 > 1 - 6
-Solution 34 found (after backtracking from 1407960 nodes):
+
 3 - 4 - 6 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -427,7 +427,7 @@ Solution 34 found (after backtracking from 1407960 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 35 found (after backtracking from 1423272 nodes):
+
 3 - 4 - 6 - 1 - 2 < 5
 -   -   -   <   -   -
 5 - 2 - 1 - 3 - 6 - 4
@@ -439,7 +439,7 @@ Solution 35 found (after backtracking from 1423272 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 1 - 5 - 2 < 4 > 3 - 6
-Solution 36 found (after backtracking from 1439049 nodes):
+
 3 - 4 - 6 - 2 - 1 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -451,7 +451,7 @@ Solution 36 found (after backtracking from 1439049 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 37 found (after backtracking from 1439059 nodes):
+
 3 - 4 - 6 - 2 - 1 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -463,7 +463,7 @@ Solution 37 found (after backtracking from 1439059 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 38 found (after backtracking from 1451579 nodes):
+
 3 - 4 - 6 - 2 - 1 < 5
 -   -   -   <   -   -
 5 - 2 - 1 - 3 - 6 - 4
@@ -475,7 +475,7 @@ Solution 38 found (after backtracking from 1451579 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 1 - 5 - 2 < 4 > 3 - 6
-Solution 39 found (after backtracking from 1560017 nodes):
+
 3 - 5 - 4 - 2 - 1 < 6
 -   -   -   <   -   -
 1 - 3 - 2 - 5 - 6 - 4
@@ -487,7 +487,7 @@ Solution 39 found (after backtracking from 1560017 nodes):
 5 - 2 < 6 - 4 - 3 - 1
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 40 found (after backtracking from 1587090 nodes):
+
 3 - 5 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -499,7 +499,7 @@ Solution 40 found (after backtracking from 1587090 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 41 found (after backtracking from 1589071 nodes):
+
 3 - 5 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -511,7 +511,7 @@ Solution 41 found (after backtracking from 1589071 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 3 - 2 < 4 > 1 - 6
-Solution 42 found (after backtracking from 1589101 nodes):
+
 3 - 5 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -523,7 +523,7 @@ Solution 42 found (after backtracking from 1589101 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 43 found (after backtracking from 1621740 nodes):
+
 3 - 5 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 6 - 5
@@ -535,7 +535,7 @@ Solution 43 found (after backtracking from 1621740 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 44 found (after backtracking from 1624861 nodes):
+
 3 - 5 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -547,7 +547,7 @@ Solution 44 found (after backtracking from 1624861 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 45 found (after backtracking from 1624871 nodes):
+
 3 - 5 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -559,7 +559,7 @@ Solution 45 found (after backtracking from 1624871 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 46 found (after backtracking from 1806887 nodes):
+
 4 - 2 - 6 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -571,7 +571,7 @@ Solution 46 found (after backtracking from 1806887 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 47 found (after backtracking from 1806908 nodes):
+
 4 - 2 - 6 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -583,7 +583,7 @@ Solution 47 found (after backtracking from 1806908 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 48 found (after backtracking from 1930929 nodes):
+
 4 - 3 - 6 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -595,7 +595,7 @@ Solution 48 found (after backtracking from 1930929 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 49 found (after backtracking from 1954605 nodes):
+
 4 - 3 - 6 - 2 - 1 < 5
 -   -   -   <   -   -
 1 - 4 - 2 - 5 - 3 - 6
@@ -607,7 +607,7 @@ Solution 49 found (after backtracking from 1954605 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 50 found (after backtracking from 1976704 nodes):
+
 4 - 5 - 1 - 2 - 3 < 6
 -   -   -   <   -   -
 1 - 2 - 3 - 5 - 6 - 4
@@ -619,7 +619,7 @@ Solution 50 found (after backtracking from 1976704 nodes):
 5 - 3 < 6 - 4 - 2 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 51 found (after backtracking from 1980407 nodes):
+
 4 - 5 - 1 - 2 - 3 < 6
 -   -   -   <   -   -
 1 - 3 - 6 - 5 - 2 - 4
@@ -631,7 +631,7 @@ Solution 51 found (after backtracking from 1980407 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 52 found (after backtracking from 2006588 nodes):
+
 4 - 5 - 2 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 2 - 3 - 5 - 6 - 4
@@ -643,7 +643,7 @@ Solution 52 found (after backtracking from 2006588 nodes):
 5 - 3 < 6 - 4 - 1 - 2
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 53 found (after backtracking from 2070551 nodes):
+
 4 - 5 - 3 - 2 - 1 < 6
 -   -   -   <   -   -
 1 - 3 - 2 - 5 - 6 - 4
@@ -655,7 +655,7 @@ Solution 53 found (after backtracking from 2070551 nodes):
 5 - 2 < 6 - 4 - 3 - 1
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 54 found (after backtracking from 2091591 nodes):
+
 4 - 5 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 5 - 6
@@ -667,7 +667,7 @@ Solution 54 found (after backtracking from 2091591 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 55 found (after backtracking from 2091992 nodes):
+
 4 - 5 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -679,7 +679,7 @@ Solution 55 found (after backtracking from 2091992 nodes):
 6 - 2 < 3 - 5 - 4 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 56 found (after backtracking from 2092019 nodes):
+
 4 - 5 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -691,7 +691,7 @@ Solution 56 found (after backtracking from 2092019 nodes):
 6 - 2 < 3 - 4 - 5 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 57 found (after backtracking from 2123702 nodes):
+
 4 - 5 - 6 - 2 - 1 < 3
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 6 - 5
@@ -703,7 +703,7 @@ Solution 57 found (after backtracking from 2123702 nodes):
 6 - 2 < 3 - 5 - 4 - 1
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 58 found (after backtracking from 2124085 nodes):
+
 4 - 5 - 6 - 2 - 1 < 3
 -   -   -   <   -   -
 1 - 3 - 2 - 5 - 4 - 6
@@ -715,7 +715,7 @@ Solution 58 found (after backtracking from 2124085 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 59 found (after backtracking from 2127104 nodes):
+
 4 - 5 - 6 - 2 - 1 < 3
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -727,7 +727,7 @@ Solution 59 found (after backtracking from 2127104 nodes):
 6 - 2 < 3 - 5 - 4 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 60 found (after backtracking from 2256131 nodes):
+
 5 - 2 - 3 - 1 - 4 < 6
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -739,7 +739,7 @@ Solution 60 found (after backtracking from 2256131 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 6 - 5 - 1 < 4 > 2 - 3
-Solution 61 found (after backtracking from 2279802 nodes):
+
 5 - 2 - 4 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -751,7 +751,7 @@ Solution 61 found (after backtracking from 2279802 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 62 found (after backtracking from 2279830 nodes):
+
 5 - 2 - 4 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -763,7 +763,7 @@ Solution 62 found (after backtracking from 2279830 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 63 found (after backtracking from 2281580 nodes):
+
 5 - 2 - 4 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -775,7 +775,7 @@ Solution 63 found (after backtracking from 2281580 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 64 found (after backtracking from 2281599 nodes):
+
 5 - 2 - 4 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -787,7 +787,7 @@ Solution 64 found (after backtracking from 2281599 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 65 found (after backtracking from 2307442 nodes):
+
 5 - 2 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -799,7 +799,7 @@ Solution 65 found (after backtracking from 2307442 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 3 - 5 - 1 < 4 > 2 - 6
-Solution 66 found (after backtracking from 2308024 nodes):
+
 5 - 2 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -811,7 +811,7 @@ Solution 66 found (after backtracking from 2308024 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 67 found (after backtracking from 2308044 nodes):
+
 5 - 2 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -823,7 +823,7 @@ Solution 67 found (after backtracking from 2308044 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 4 - 5 - 1 < 3 > 2 - 6
-Solution 68 found (after backtracking from 2308066 nodes):
+
 5 - 2 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -835,7 +835,7 @@ Solution 68 found (after backtracking from 2308066 nodes):
 6 - 3 < 4 - 5 - 2 - 1
 -   -   -   >   -   -
 3 - 5 - 2 < 4 > 1 - 6
-Solution 69 found (after backtracking from 2308083 nodes):
+
 5 - 2 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -847,7 +847,7 @@ Solution 69 found (after backtracking from 2308083 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 3 - 5 - 1 < 4 > 2 - 6
-Solution 70 found (after backtracking from 2317482 nodes):
+
 5 - 2 - 6 - 1 - 3 < 4
 -   -   -   <   -   -
 3 - 4 - 1 - 2 - 6 - 5
@@ -859,7 +859,7 @@ Solution 70 found (after backtracking from 2317482 nodes):
 6 - 3 < 4 - 5 - 1 - 2
 -   -   -   >   -   -
 1 - 5 - 3 < 4 > 2 - 6
-Solution 71 found (after backtracking from 2348571 nodes):
+
 5 - 3 - 1 - 2 - 4 < 6
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -871,7 +871,7 @@ Solution 71 found (after backtracking from 2348571 nodes):
 4 - 2 < 6 - 5 - 1 - 3
 -   -   -   >   -   -
 6 - 5 - 3 < 4 > 2 - 1
-Solution 72 found (after backtracking from 2349831 nodes):
+
 5 - 3 - 1 - 2 - 4 < 6
 -   -   -   <   -   -
 1 - 4 - 6 - 3 - 2 - 5
@@ -883,7 +883,7 @@ Solution 72 found (after backtracking from 2349831 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 4 > 1 - 3
-Solution 73 found (after backtracking from 2395733 nodes):
+
 5 - 3 - 4 - 1 - 2 < 6
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -895,7 +895,7 @@ Solution 73 found (after backtracking from 2395733 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 74 found (after backtracking from 2396589 nodes):
+
 5 - 3 - 4 - 1 - 2 < 6
 -   -   -   <   -   -
 1 - 4 - 6 - 2 - 3 - 5
@@ -907,7 +907,7 @@ Solution 74 found (after backtracking from 2396589 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 75 found (after backtracking from 2397860 nodes):
+
 5 - 3 - 4 - 1 - 2 < 6
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -919,7 +919,7 @@ Solution 75 found (after backtracking from 2397860 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 76 found (after backtracking from 2398272 nodes):
+
 5 - 3 - 4 - 1 - 2 < 6
 -   -   -   <   -   -
 1 - 5 - 6 - 2 - 3 - 4
@@ -931,7 +931,7 @@ Solution 76 found (after backtracking from 2398272 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 77 found (after backtracking from 2432568 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -943,7 +943,7 @@ Solution 77 found (after backtracking from 2432568 nodes):
 4 - 2 < 3 - 5 - 1 - 6
 -   -   -   >   -   -
 6 - 5 - 1 < 4 > 3 - 2
-Solution 78 found (after backtracking from 2432635 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -955,7 +955,7 @@ Solution 78 found (after backtracking from 2432635 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 2 - 5 - 1 < 4 > 3 - 6
-Solution 79 found (after backtracking from 2434014 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -967,7 +967,7 @@ Solution 79 found (after backtracking from 2434014 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 80 found (after backtracking from 2434052 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -979,7 +979,7 @@ Solution 80 found (after backtracking from 2434052 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 3 - 5 - 2 < 4 > 1 - 6
-Solution 81 found (after backtracking from 2434114 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 3 - 2 - 6 - 5
@@ -991,7 +991,7 @@ Solution 81 found (after backtracking from 2434114 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 2 - 5 - 1 < 4 > 3 - 6
-Solution 82 found (after backtracking from 2437279 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 5 - 4 - 2 - 3 - 6
@@ -1003,7 +1003,7 @@ Solution 82 found (after backtracking from 2437279 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 2 < 3 > 1 - 5
-Solution 83 found (after backtracking from 2439992 nodes):
+
 5 - 3 - 6 - 1 - 2 < 4
 -   -   -   <   -   -
 2 - 4 - 1 - 3 - 6 - 5
@@ -1015,7 +1015,7 @@ Solution 83 found (after backtracking from 2439992 nodes):
 6 - 2 < 4 - 5 - 1 - 3
 -   -   -   >   -   -
 1 - 5 - 2 < 4 > 3 - 6
-Solution 84 found (after backtracking from 2459582 nodes):
+
 5 - 3 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 5 - 6
@@ -1027,7 +1027,7 @@ Solution 84 found (after backtracking from 2459582 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 4 > 2 - 3
-Solution 85 found (after backtracking from 2459908 nodes):
+
 5 - 3 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -1039,7 +1039,7 @@ Solution 85 found (after backtracking from 2459908 nodes):
 6 - 2 < 4 - 5 - 3 - 1
 -   -   -   >   -   -
 3 - 5 - 1 < 4 > 2 - 6
-Solution 86 found (after backtracking from 2463031 nodes):
+
 5 - 3 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 5 - 2 - 4 - 3 - 6
@@ -1051,7 +1051,7 @@ Solution 86 found (after backtracking from 2463031 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 4 - 1 < 3 > 2 - 5
-Solution 87 found (after backtracking from 2476336 nodes):
+
 5 - 3 - 6 - 2 - 1 < 4
 -   -   -   <   -   -
 6 - 4 - 1 - 3 - 2 - 5
@@ -1063,7 +1063,7 @@ Solution 87 found (after backtracking from 2476336 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 1 - 5 - 2 < 4 > 3 - 6
-Solution 88 found (after backtracking from 2486735 nodes):
+
 5 - 4 - 1 - 2 - 3 < 6
 -   -   -   <   -   -
 1 - 2 - 3 - 4 - 6 - 5
@@ -1075,7 +1075,7 @@ Solution 88 found (after backtracking from 2486735 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 89 found (after backtracking from 2490109 nodes):
+
 5 - 4 - 1 - 2 - 3 < 6
 -   -   -   <   -   -
 1 - 3 - 6 - 4 - 2 - 5
@@ -1087,7 +1087,7 @@ Solution 89 found (after backtracking from 2490109 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 90 found (after backtracking from 2490967 nodes):
+
 5 - 4 - 1 - 2 - 3 < 6
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1099,7 +1099,7 @@ Solution 90 found (after backtracking from 2490967 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 6 - 2 - 3 < 4 > 1 - 5
-Solution 91 found (after backtracking from 2492032 nodes):
+
 5 - 4 - 1 - 2 - 3 < 6
 -   -   -   <   -   -
 1 - 5 - 6 - 3 - 2 - 4
@@ -1111,7 +1111,7 @@ Solution 91 found (after backtracking from 2492032 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 3 - 2 < 4 > 1 - 5
-Solution 92 found (after backtracking from 2515592 nodes):
+
 5 - 4 - 2 - 1 - 3 < 6
 -   -   -   <   -   -
 1 - 2 - 3 - 4 - 6 - 5
@@ -1123,7 +1123,7 @@ Solution 92 found (after backtracking from 2515592 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 93 found (after backtracking from 2553498 nodes):
+
 5 - 4 - 3 - 1 - 2 < 6
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1135,7 +1135,7 @@ Solution 93 found (after backtracking from 2553498 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 94 found (after backtracking from 2555219 nodes):
+
 5 - 4 - 3 - 1 - 2 < 6
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1147,7 +1147,7 @@ Solution 94 found (after backtracking from 2555219 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 6 - 2 - 1 < 4 > 3 - 5
-Solution 95 found (after backtracking from 2576347 nodes):
+
 5 - 4 - 3 - 2 - 1 < 6
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 6 - 5
@@ -1159,7 +1159,7 @@ Solution 95 found (after backtracking from 2576347 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 96 found (after backtracking from 2578608 nodes):
+
 5 - 4 - 3 - 2 - 1 < 6
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1171,7 +1171,7 @@ Solution 96 found (after backtracking from 2578608 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 6 - 3 - 1 < 4 > 2 - 5
-Solution 97 found (after backtracking from 2578618 nodes):
+
 5 - 4 - 3 - 2 - 1 < 6
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1183,7 +1183,7 @@ Solution 97 found (after backtracking from 2578618 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 6 - 2 - 1 < 4 > 3 - 5
-Solution 98 found (after backtracking from 2596588 nodes):
+
 5 - 4 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1195,7 +1195,7 @@ Solution 98 found (after backtracking from 2596588 nodes):
 6 - 2 < 3 - 5 - 4 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 99 found (after backtracking from 2596608 nodes):
+
 5 - 4 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1207,7 +1207,7 @@ Solution 99 found (after backtracking from 2596608 nodes):
 6 - 2 < 3 - 4 - 5 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 100 found (after backtracking from 2596664 nodes):
+
 5 - 4 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1219,7 +1219,7 @@ Solution 100 found (after backtracking from 2596664 nodes):
 6 - 2 < 3 - 5 - 4 - 1
 -   -   -   >   -   -
 3 - 5 - 2 < 4 > 1 - 6
-Solution 101 found (after backtracking from 2596728 nodes):
+
 5 - 4 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1231,7 +1231,7 @@ Solution 101 found (after backtracking from 2596728 nodes):
 6 - 2 < 3 - 5 - 1 - 4
 -   -   -   >   -   -
 2 - 5 - 1 < 4 > 3 - 6
-Solution 102 found (after backtracking from 2596803 nodes):
+
 5 - 4 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1243,7 +1243,7 @@ Solution 102 found (after backtracking from 2596803 nodes):
 6 - 1 < 3 - 5 - 4 - 2
 -   -   -   >   -   -
 2 - 5 - 1 < 4 > 3 - 6
-Solution 103 found (after backtracking from 2597259 nodes):
+
 5 - 4 - 6 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 5 - 2 - 4 - 6
@@ -1255,7 +1255,7 @@ Solution 103 found (after backtracking from 2597259 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 2 < 3 > 1 - 4
-Solution 104 found (after backtracking from 2626133 nodes):
+
 5 - 4 - 6 - 2 - 1 < 3
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 5 - 6
@@ -1267,7 +1267,7 @@ Solution 104 found (after backtracking from 2626133 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 5 - 1 < 3 > 2 - 4
-Solution 105 found (after backtracking from 2626488 nodes):
+
 5 - 4 - 6 - 2 - 1 < 3
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 6 - 5
@@ -1279,7 +1279,7 @@ Solution 105 found (after backtracking from 2626488 nodes):
 6 - 2 < 3 - 5 - 4 - 1
 -   -   -   >   -   -
 4 - 5 - 1 < 3 > 2 - 6
-Solution 106 found (after backtracking from 2629524 nodes):
+
 5 - 4 - 6 - 2 - 1 < 3
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 4 - 6
@@ -1291,7 +1291,7 @@ Solution 106 found (after backtracking from 2629524 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 6 - 3 - 1 < 4 > 2 - 5
-Solution 107 found (after backtracking from 2805178 nodes):
+
 6 - 2 - 4 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -1303,7 +1303,7 @@ Solution 107 found (after backtracking from 2805178 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 108 found (after backtracking from 2805206 nodes):
+
 6 - 2 - 4 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -1315,7 +1315,7 @@ Solution 108 found (after backtracking from 2805206 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 109 found (after backtracking from 2938747 nodes):
+
 6 - 3 - 4 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 3 - 2 - 6 - 4
@@ -1327,7 +1327,7 @@ Solution 109 found (after backtracking from 2938747 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 110 found (after backtracking from 2939251 nodes):
+
 6 - 3 - 4 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 6 - 2 - 3 - 4
@@ -1339,7 +1339,7 @@ Solution 110 found (after backtracking from 2939251 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 111 found (after backtracking from 3031632 nodes):
+
 6 - 4 - 1 - 2 - 3 < 5
 -   -   -   <   -   -
 1 - 2 - 3 - 5 - 6 - 4
@@ -1351,7 +1351,7 @@ Solution 111 found (after backtracking from 3031632 nodes):
 5 - 3 < 6 - 4 - 2 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 112 found (after backtracking from 3035854 nodes):
+
 6 - 4 - 1 - 2 - 3 < 5
 -   -   -   <   -   -
 1 - 3 - 6 - 5 - 2 - 4
@@ -1363,7 +1363,7 @@ Solution 112 found (after backtracking from 3035854 nodes):
 5 - 2 < 3 - 4 - 6 - 1
 -   -   -   >   -   -
 4 - 5 - 2 < 3 > 1 - 6
-Solution 113 found (after backtracking from 3036655 nodes):
+
 6 - 4 - 1 - 2 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1375,7 +1375,7 @@ Solution 113 found (after backtracking from 3036655 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 2 - 3 < 4 > 1 - 6
-Solution 114 found (after backtracking from 3038723 nodes):
+
 6 - 4 - 1 - 2 - 3 < 5
 -   -   -   <   -   -
 1 - 5 - 6 - 3 - 2 - 4
@@ -1387,7 +1387,7 @@ Solution 114 found (after backtracking from 3038723 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 3 - 2 < 4 > 1 - 6
-Solution 115 found (after backtracking from 3069206 nodes):
+
 6 - 4 - 2 - 1 - 3 < 5
 -   -   -   <   -   -
 1 - 2 - 3 - 5 - 6 - 4
@@ -1399,7 +1399,7 @@ Solution 115 found (after backtracking from 3069206 nodes):
 5 - 3 < 6 - 4 - 1 - 2
 -   -   -   >   -   -
 4 - 5 - 1 < 3 > 2 - 6
-Solution 116 found (after backtracking from 3092916 nodes):
+
 6 - 4 - 2 - 1 - 3 < 5
 -   -   -   <   -   -
 5 - 2 - 1 - 3 - 6 - 4
@@ -1411,7 +1411,7 @@ Solution 116 found (after backtracking from 3092916 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 1 - 5 - 3 < 4 > 2 - 6
-Solution 117 found (after backtracking from 3118592 nodes):
+
 6 - 4 - 3 - 1 - 2 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1423,7 +1423,7 @@ Solution 117 found (after backtracking from 3118592 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 118 found (after backtracking from 3137857 nodes):
+
 6 - 4 - 3 - 1 - 2 < 5
 -   -   -   <   -   -
 5 - 2 - 1 - 3 - 6 - 4
@@ -1435,7 +1435,7 @@ Solution 118 found (after backtracking from 3137857 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 1 - 5 - 2 < 4 > 3 - 6
-Solution 119 found (after backtracking from 3143878 nodes):
+
 6 - 4 - 3 - 2 - 1 < 5
 -   -   -   <   -   -
 1 - 3 - 2 - 5 - 6 - 4
@@ -1447,7 +1447,7 @@ Solution 119 found (after backtracking from 3143878 nodes):
 5 - 2 < 6 - 4 - 3 - 1
 -   -   -   >   -   -
 4 - 5 - 1 < 3 > 2 - 6
-Solution 120 found (after backtracking from 3146435 nodes):
+
 6 - 4 - 3 - 2 - 1 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1459,7 +1459,7 @@ Solution 120 found (after backtracking from 3146435 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 121 found (after backtracking from 3146445 nodes):
+
 6 - 4 - 3 - 2 - 1 < 5
 -   -   -   <   -   -
 1 - 5 - 2 - 3 - 6 - 4
@@ -1471,7 +1471,7 @@ Solution 121 found (after backtracking from 3146445 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 122 found (after backtracking from 3160464 nodes):
+
 6 - 4 - 3 - 2 - 1 < 5
 -   -   -   <   -   -
 5 - 2 - 1 - 3 - 6 - 4
@@ -1483,7 +1483,7 @@ Solution 122 found (after backtracking from 3160464 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 1 - 5 - 2 < 4 > 3 - 6
-Solution 123 found (after backtracking from 3232866 nodes):
+
 6 - 5 - 1 - 2 - 3 < 4
 -   -   -   <   -   -
 1 - 2 - 3 - 4 - 6 - 5
@@ -1495,7 +1495,7 @@ Solution 123 found (after backtracking from 3232866 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 124 found (after backtracking from 3237739 nodes):
+
 6 - 5 - 1 - 2 - 3 < 4
 -   -   -   <   -   -
 1 - 3 - 6 - 4 - 2 - 5
@@ -1507,7 +1507,7 @@ Solution 124 found (after backtracking from 3237739 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 125 found (after backtracking from 3238751 nodes):
+
 6 - 5 - 1 - 2 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -1519,7 +1519,7 @@ Solution 125 found (after backtracking from 3238751 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 2 - 3 < 4 > 1 - 6
-Solution 126 found (after backtracking from 3240967 nodes):
+
 6 - 5 - 1 - 2 - 3 < 4
 -   -   -   <   -   -
 1 - 4 - 6 - 3 - 2 - 5
@@ -1531,7 +1531,7 @@ Solution 126 found (after backtracking from 3240967 nodes):
 4 - 2 < 3 - 5 - 6 - 1
 -   -   -   >   -   -
 5 - 3 - 2 < 4 > 1 - 6
-Solution 127 found (after backtracking from 3281159 nodes):
+
 6 - 5 - 2 - 1 - 3 < 4
 -   -   -   <   -   -
 1 - 2 - 3 - 4 - 6 - 5
@@ -1543,7 +1543,7 @@ Solution 127 found (after backtracking from 3281159 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 128 found (after backtracking from 3341114 nodes):
+
 6 - 5 - 3 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 3 - 4 - 2 - 6 - 5
@@ -1555,7 +1555,7 @@ Solution 128 found (after backtracking from 3341114 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 4 - 2 < 3 > 1 - 6
-Solution 129 found (after backtracking from 3343367 nodes):
+
 6 - 5 - 3 - 1 - 2 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -1567,7 +1567,7 @@ Solution 129 found (after backtracking from 3343367 nodes):
 4 - 3 < 6 - 5 - 1 - 2
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 130 found (after backtracking from 3370554 nodes):
+
 6 - 5 - 3 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 3 - 2 - 4 - 6 - 5
@@ -1579,7 +1579,7 @@ Solution 130 found (after backtracking from 3370554 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 4 - 1 < 3 > 2 - 6
-Solution 131 found (after backtracking from 3373698 nodes):
+
 6 - 5 - 3 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -1591,7 +1591,7 @@ Solution 131 found (after backtracking from 3373698 nodes):
 4 - 2 < 6 - 5 - 3 - 1
 -   -   -   >   -   -
 5 - 3 - 1 < 4 > 2 - 6
-Solution 132 found (after backtracking from 3373708 nodes):
+
 6 - 5 - 3 - 2 - 1 < 4
 -   -   -   <   -   -
 1 - 4 - 2 - 3 - 6 - 5
@@ -1603,7 +1603,7 @@ Solution 132 found (after backtracking from 3373708 nodes):
 4 - 3 < 6 - 5 - 2 - 1
 -   -   -   >   -   -
 5 - 2 - 1 < 4 > 3 - 6
-Solution 133 found (after backtracking from 3405743 nodes):
+
 6 - 5 - 4 - 1 - 2 < 3
 -   -   -   <   -   -
 1 - 3 - 6 - 2 - 4 - 5

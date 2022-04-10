@@ -1,55 +1,49 @@
 from copy import deepcopy
+from typing import Generic
 
-from .problem import Problem, Variable
-
-_solutions_count = 0
-_steps_count = 0
-_solutions = set()
+from .problem import Problem, VLabel, VValue
 
 
-def are_neighbors(var1: Variable, var2: Variable) -> bool:
-    return abs(var1[0][0] - var2[0][0]) + abs(var1[0][1] - var2[0][1]) == 1
-
-
-def _bt_fc_search(assigned_vars: list[Variable],
-                  unassigned_vars: list[Variable],
-                  curr_domain: dict[tuple[int, int], list[int]],
-                  problem: Problem):
-    global _solutions_count
-    global _steps_count
-    if not unassigned_vars:
-        return tuple(assigned_vars)
-    var, unassigned_vars = unassigned_vars[0], unassigned_vars[1:]
-    for val in curr_domain[var[0]]:
-        _steps_count += 1
-        if _steps_count % 100000 == 0:
-            print(f'Steps: {_steps_count}')
-        if problem.is_consistent(assigned_vars, var[0], val):
-            var = (var[0], val)
-            assigned_vars.append(var)
-            curr_domain_copy = deepcopy(curr_domain)
-            neighbors = [v for v in unassigned_vars if are_neighbors(v, var)]
-            for var_y in neighbors:
-                curr_domain_copy[var_y] = [x for x in curr_domain_copy[var_y[0]] if
-                                         problem.is_consistent(assigned_vars, var_y[0], x)]
-            if all(curr_domain_copy[var_y[0]] for var_y in neighbors):
-                result = _bt_fc_search(assigned_vars, unassigned_vars, curr_domain_copy, problem)
-                if result and result not in _solutions:
-                    _solutions.add(result)
-                    _solutions_count += 1
-                    print(f'Solution {_solutions_count} found'
-                          f' (after {_steps_count} steps):')
-                    problem.print_merged_matrix(result)
-            assigned_vars.pop()
-    return None
-
-
-def bt_fc_search(problem: Problem):
-    global _solutions_count
-    global _steps_count
+class BTFCSearch(Generic[VLabel, VValue]):
     _solutions_count = 0
     _steps_count = 0
-    a = []
-    u = problem.generate_unassigned_vars()
-    d = {v: deepcopy(problem.domain) for v in u}
-    _bt_fc_search(a, u, d, problem)
+    _solutions = set()
+
+    @classmethod
+    def _bt_fc_search(cls,
+                      assigned_vars: dict[VLabel, VValue],
+                      unassigned_vars: list[VLabel],
+                      domain: dict[VLabel, list[VValue]],
+                      problem: Problem):
+        if not unassigned_vars:
+            return tuple(assigned_vars)
+        var, unassigned_vars = unassigned_vars[0], unassigned_vars[1:]
+        for val in domain[var]:
+            cls._steps_count += 1
+            if cls._steps_count % 100000 == 0:
+                print(f'Steps: {cls._steps_count}')
+            if problem.check_constraints((var, val), assigned_vars):
+                assigned_vars[var] = val
+                domain_cp = deepcopy(domain)
+                neighbors = (var_y for var_y in unassigned_vars if problem.constraints[(var_y, var)])
+                for var_y in unassigned_vars:
+                    if problem.constraints[(var_y, var)] or problem.constraints[(var, var_y)]:
+                        domain_cp[var_y] = [val_y for val_y in domain_cp[var_y] if
+                                            problem.check_constraints((var_y, val_y), assigned_vars)]
+                if all(domain_cp[var_y] for var_y in neighbors):
+                    result = cls._bt_fc_search(assigned_vars, unassigned_vars, domain_cp, problem)
+                    if result and result not in cls._solutions:
+                        cls._solutions.add(result)
+                        cls._solutions_count += 1
+                        print(f'Solution {cls._solutions_count} found'
+                              f' (after {cls._steps_count} steps):')
+                        problem.print_with_assigned_variables(assigned_vars)
+                del assigned_vars[var]
+        return None
+
+    @classmethod
+    def bt_fc_search(cls, problem: Problem):
+        cls._solutions_count = 0
+        cls._steps_count = 0
+        cls._bt_fc_search({}, problem.variables, problem.domains, problem)
+

@@ -1,66 +1,95 @@
-from typing import Iterable, Callable
+from copy import deepcopy
+from dataclasses import dataclass
+from enum import Enum
+from functools import cached_property
+from itertools import product, combinations
+from operator import ne
+from typing import Callable
 
-from .problem import Problem, Variable
+from .problem import Problem
 
 
-class BinaryGame(Problem):
+class BGVLabelType(Enum):
+    Row = 1
+    Col = 2
+
+
+@dataclass
+class BGVLabel:
+    type: BGVLabelType
+    index: int
+
+    def __hash__(self):
+        return hash(f'{self.type}.{self.index}')
+
+
+class BinaryGame(Problem[BGVLabel, list[int]]):
+    Variable = tuple[BGVLabel, list[int]]
+
     def __init__(self, size: int):
         if size % 2 != 0:
             raise ValueError
-        self.matrix: list[list[int | None]] = \
-            [[None for _ in range(size)] for _ in range(size)]
-        self.domain: list[int] = [0, 1]
+        self.matrix: list[list[int | None]] = [[None for _ in range(size)] for _ in range(size)]
         self.size: int = size
 
-    @property
-    def checks(self) -> Iterable[Callable]:
-        return (
-            self._check_row_symmetry,
-            self._check_col_symmetry,
-            self._check_row_triples,
-            self._check_col_triples,
-            self._check_row_uniqueness,
-            self._check_col_uniqueness
-        )
+    @cached_property
+    def variables(self) -> list[BGVLabel]:
+        return list(sorted([BGVLabel(var_type, index) for var_type, index in product(BGVLabelType, range(self.size))], key=lambda lab: lab.index))
 
-    def print_matrix(self, matrix=None):
-        if not matrix:
-            matrix = self.matrix
-        for row in matrix:
-            print(*[cell if cell is not None else 'x' for cell in row])
+    @cached_property
+    def domains(self) -> dict[BGVLabel, list[list[int]]]:
+        domains = {}
+        # base_dom is a superset of every variable's domain
+        base_dom = list(product([0, 1], repeat=self.size))
+        # Filter out values where number of zeroes and ones is not equal
+        base_dom = [val for val in base_dom if sum(val) == self.size // 2]
+        # Filter out values where there are
+        base_dom = [val for val in base_dom if all(
+            window_sum not in [0, 3] for window_sum in (sum(window) for window in zip(val, val[1:], val[2:]))
+        )]
+        for variable in self.variables:
+            domains[variable] = deepcopy(base_dom)
+            # Filter out values which do not comply with pre-defined cells in the game matrix
+            if variable.type == BGVLabelType.Col:
+                for i, mtx_val in enumerate([self.matrix[i][variable.index] for i in range(self.size)]):
+                    if mtx_val is not None:
+                        domains[variable] = [dom_val for dom_val in domains[variable] if dom_val[i] == mtx_val]
+            else:
+                for j, mtx_val in enumerate(self.matrix[variable.index]):
+                    if mtx_val is not None:
+                        domains[variable] = [dom_val for dom_val in domains[variable] if dom_val[j] == mtx_val]
+        return domains
 
-    def _check_domain(self, matrix) -> bool:
-        for row in matrix:
-            for cell in row:
-                if cell not in (*self.domain, None):
-                    return False
-        return True
+    @cached_property
+    def constraints(self) -> dict[tuple[BGVLabel, BGVLabel], list[Callable[[Variable, Variable], bool]]]:
+        def is_row_and_col_intersection_consistent(row: BinaryGame.Variable, col: BinaryGame.Variable) -> bool:
+            row_label, row_value = row
+            col_label, col_value = col
+            return row_value[col_label.index] == col_value[row_label.index]
 
-    def _check_row_uniqueness(self, matrix) -> bool:
-        rows = [str(row) for row in matrix if None not in row]
-        return len(rows) == len(set(rows))
+        constraints = {(var_1, var_2): [] for var_1, var_2 in combinations(self.variables, r=2)}
 
-    def _check_col_uniqueness(self, matrix) -> bool:
-        return self._check_row_uniqueness([*zip(*matrix)])
+        # Add uniqueness constraints for every pair of rows and every pair of cols
+        for var_type in BGVLabelType:
+            for var_1, var_2 in combinations((var for var in self.variables if var.type == var_type), r=2):
+                if (var_1, var_2) in constraints:
+                    constraints[(var_1, var_2)].append(ne)
+                else:
+                    constraints[(var_2, var_1)].append(ne)
 
-    def _check_row_symmetry(self, matrix) -> bool:
-        rows = [row for row in matrix if None not in row]
-        for row in rows:
-            if sum(row) != self.size / 2:
-                return False
-        return True
+        # Add cell consistency constraints for every pair of row and col
+        for row in (var for var in self.variables if var.type == BGVLabelType.Row):
+            for col in (var for var in self.variables if var.type == BGVLabelType.Col):
+                if (row, col) in constraints:
+                    constraints[(row, col)].append(is_row_and_col_intersection_consistent)
+                else:
+                    constraints[(col, row)].append(is_row_and_col_intersection_consistent)
 
-    def _check_col_symmetry(self, matrix) -> bool:
-        return self._check_row_symmetry([*zip(*matrix)])
+        return constraints
 
-    def _check_row_triples(self, matrix) -> bool:
-        if self.size < 3:
-            return True
-        for row in matrix:
-            for i in range(self.size - 2):
-                if row[i] == row[i + 1] == row[i + 2] and row[i] is not None:
-                    return False
-        return True
-
-    def _check_col_triples(self, matrix) -> bool:
-        return self._check_row_triples([*zip(*matrix)])
+    def print_with_assigned_variables(self, assigned_variables: dict[BGVLabel, list[int]]):
+        for i in range(self.size):
+            if BGVLabel(BGVLabelType.Row, i) in assigned_variables:
+                print(*assigned_variables[BGVLabel(BGVLabelType.Row, i)])
+            else:
+                print(*self.matrix[i])
