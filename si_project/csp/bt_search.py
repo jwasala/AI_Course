@@ -1,4 +1,4 @@
-from typing import Generic
+from typing import Generic, Callable
 
 from .problem import Problem, VLabel, VValue
 
@@ -35,7 +35,12 @@ class BTSearch(Generic[VLabel, VValue]):
 
     @classmethod
     def bt_search(cls,
-                  problem: Problem):
+                  problem: Problem,
+                  order_vars: Callable[[Problem], list[VLabel]] = None,
+                  order_domains: Callable[[Problem], dict[VLabel, list[VValue]]] = None):
         cls._solutions_count = 0
         cls._steps_count = 0
-        cls._bt_search({}, problem.variables, problem.domains, problem)
+        cls._bt_search({},
+                       order_vars(problem) if order_vars else problem.variables,
+                       order_domains(problem) if order_domains else problem.domains,
+                       problem)
