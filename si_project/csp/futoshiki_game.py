@@ -30,8 +30,8 @@ class FutoshikiGame(Problem):
         return {(i, j): base_domain if self.matrix[i][j] is None else [self.matrix[i][j]] for i, j in self.variables}
 
     @cached_property
-    def constraints(self) -> dict[tuple[tuple[int, int], tuple[int, int]], list[Callable[[Variable, Variable], bool]]]:
-        c = {pair: [] for pair in product(self.variables, repeat=2)}
+    def constraints(self) -> dict[tuple[tuple[int, int], tuple[int, int]], set[Callable[[Variable, Variable], bool]]]:
+        c = {pair: set() for pair in product(self.variables, repeat=2)}
 
         def values_ne(v1, v2):
             return v1[1] != v2[1]
@@ -45,24 +45,25 @@ class FutoshikiGame(Problem):
         # Row and col internal uniqueness
         for i in range(self.size):
             for j1, j2 in product(range(self.size), repeat=2):
-                c[((i, j1), (i, j2))].append(values_ne)
-                c[((i, j2), (i, j1))].append(values_ne)
-                c[((j1, i), (j2, i))].append(values_ne)
-                c[((j2, i), (j1, i))].append(values_ne)
+                if j1 != j2:
+                    c[((i, j1), (i, j2))].add(values_ne)
+                    c[((i, j2), (i, j1))].add(values_ne)
+                    c[((j1, i), (j2, i))].add(values_ne)
+                    c[((j2, i), (j1, i))].add(values_ne)
 
         # Horizontal constraints
         for i, row in enumerate(self.horizontal_constraints):
             for j, constr in enumerate(row):
                 if constr is not None:
-                    c[((i, j), (i, j + 1))].append(values_gt if constr == '>' else values_lt)
-                    c[((i, j + 1), (i, j))].append(values_lt if constr == '>' else values_gt)
+                    c[((i, j), (i, j + 1))].add(values_gt if constr == '>' else values_lt)
+                    c[((i, j + 1), (i, j))].add(values_lt if constr == '>' else values_gt)
 
         # Vertical constraints
         for i, row in enumerate(self.vertical_constraints):
             for j, constr in enumerate(row):
                 if constr is not None:
-                    c[((i, j), (i + 1, j))].append(values_gt if constr == '>' else values_lt)
-                    c[((i + 1, j), (i, j))].append(values_lt if constr == '>' else values_gt)
+                    c[((i, j), (i + 1, j))].add(values_gt if constr == '>' else values_lt)
+                    c[((i + 1, j), (i, j))].add(values_lt if constr == '>' else values_gt)
         return c
 
     def print_with_assigned_variables(self, assigned_variables: dict[tuple[int, int], int]):

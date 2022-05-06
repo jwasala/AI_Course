@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from functools import cached_property
+from functools import cached_property, cache
 from typing import TypeVar, Generic, Callable
 
 VLabel = TypeVar('VLabel')
@@ -21,22 +21,25 @@ class Problem(ABC, Generic[VLabel, VValue]):
 
     @cached_property
     @abstractmethod
-    def constraints(self) -> dict[tuple[VLabel, VLabel], list[Callable[[Variable, Variable], bool]]]:
+    def constraints(self) -> dict[tuple[VLabel, VLabel], set[Callable[[Variable, Variable], bool]]]:
         pass
+
+    @cache
+    def neighbors_of(self, v: VLabel) -> set[VLabel]:
+        return {v2 for v2 in self.variables if (v, v2) in self.constraints and self.constraints[(v, v2)]}
 
     def check_constraints(self, current_variable: Variable, assigned_variables: dict[VLabel, VValue]):
         current_label, current_val = current_variable
-        for other_label, constraints in ((v2, c) for (v1, v2), c in self.constraints.items() if v1 == current_label):
-            if other_label in assigned_variables:
-                other_val = assigned_variables[other_label]
-                if not all(constr(current_variable, (other_label, other_val)) for constr in constraints):
-                    return False
-        for other_label, constraints in ((v1, c) for (v1, v2), c in self.constraints.items() if v2 == current_label):
-            if other_label in assigned_variables:
-                other_val = assigned_variables[other_label]
-                if not all(constr((other_label, other_val), current_variable) for constr in constraints):
+        for neighbor_label in self.neighbors_of(current_label):
+            neighbor_val = assigned_variables.get(neighbor_label) or None
+            constraints = self.constraints[(current_label, neighbor_label)]
+            if neighbor_val:
+                if any(not constr(current_variable, (neighbor_label, neighbor_val)) for constr in constraints):
                     return False
         return True
+
+    def check_constraints_between(self, var: Variable, other_var: Variable):
+        return all(constr(var, other_var) for constr in self.constraints[(var[0], other_var[0])])
 
     @abstractmethod
     def print_with_assigned_variables(self, assigned_variables: dict[VLabel, VValue]):

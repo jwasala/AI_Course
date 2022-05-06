@@ -4,3 +4,4 @@ from .futoshiki_game import FutoshikiGame
 from .futoshiki_game_loader import FutoshikiGameLoader
 from .bt_search import BTSearch
 from .bt_fc_search import BTFCSearch
+from .heuristics import *

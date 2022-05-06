@@ -34,7 +34,7 @@ class BinaryGame(Problem[BGVLabel, list[int]]):
 
     @cached_property
     def variables(self) -> list[BGVLabel]:
-        return list(sorted([BGVLabel(var_type, index) for var_type, index in product(BGVLabelType, range(self.size))], key=lambda lab: lab.index))
+        return [BGVLabel(var_type, index) for var_type, index in product(BGVLabelType, range(self.size))]
 
     @cached_property
     def domains(self) -> dict[BGVLabel, list[list[int]]]:
@@ -61,29 +61,25 @@ class BinaryGame(Problem[BGVLabel, list[int]]):
         return domains
 
     @cached_property
-    def constraints(self) -> dict[tuple[BGVLabel, BGVLabel], list[Callable[[Variable, Variable], bool]]]:
+    def constraints(self) -> dict[tuple[BGVLabel, BGVLabel], set[Callable[[Variable, Variable], bool]]]:
         def is_row_and_col_intersection_consistent(row: BinaryGame.Variable, col: BinaryGame.Variable) -> bool:
             row_label, row_value = row
             col_label, col_value = col
             return row_value[col_label.index] == col_value[row_label.index]
 
-        constraints = {(var_1, var_2): [] for var_1, var_2 in combinations(self.variables, r=2)}
+        constraints = {(var_1, var_2): set() for var_1, var_2 in product(self.variables, repeat=2)}
 
         # Add uniqueness constraints for every pair of rows and every pair of cols
         for var_type in BGVLabelType:
             for var_1, var_2 in combinations((var for var in self.variables if var.type == var_type), r=2):
-                if (var_1, var_2) in constraints:
-                    constraints[(var_1, var_2)].append(ne)
-                else:
-                    constraints[(var_2, var_1)].append(ne)
+                constraints[(var_1, var_2)].add(ne)
+                constraints[(var_2, var_1)].add(ne)
 
         # Add cell consistency constraints for every pair of row and col
         for row in (var for var in self.variables if var.type == BGVLabelType.Row):
             for col in (var for var in self.variables if var.type == BGVLabelType.Col):
-                if (row, col) in constraints:
-                    constraints[(row, col)].append(is_row_and_col_intersection_consistent)
-                else:
-                    constraints[(col, row)].append(is_row_and_col_intersection_consistent)
+                constraints[(row, col)].add(is_row_and_col_intersection_consistent)
+                constraints[(col, row)].add(is_row_and_col_intersection_consistent)
 
         return constraints
 
