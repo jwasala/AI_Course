@@ -98,7 +98,7 @@ class TestSquare(unittest.TestCase):
                 Square(2, 2),
                 Square(3, 3)
             },
-            Square(0, 0).get_diagonal_squares()
+            Square(0, 0).diagonal_squares
         )
 
     def test_diagonal_squares_2(self):
@@ -108,7 +108,7 @@ class TestSquare(unittest.TestCase):
                 Square(1, 1),
                 Square(2, 2)
             },
-            Square(3, 3).get_diagonal_squares()
+            Square(3, 3).diagonal_squares
         )
 
     def test_diagonal_squares_3(self):
@@ -120,5 +120,50 @@ class TestSquare(unittest.TestCase):
                 Square(3, 1),
                 Square(1, 3)
             },
-            Square(2, 2).get_diagonal_squares()
+            Square(2, 2).diagonal_squares
+        )
+
+    def test_neighbour_diagonal_squares_1(self):
+        self.assertEqual(
+            {
+                Square(3, 3),
+                Square(1, 1),
+                Square(3, 1),
+                Square(1, 3)
+            },
+            Square(2, 2).neighbour_diagonal_squares
+        )
+
+    def test_neighbour_diagonal_squares_2(self):
+        self.assertEqual(
+            {
+                Square(1, 1)
+            },
+            Square(0, 0).neighbour_diagonal_squares
+        )
+
+    def test_forward_neighbour_diagonal_squares_1(self):
+        self.assertEqual(
+            {
+                Square(3, 3),
+                Square(3, 1)
+            },
+            Square(2, 2).get_forward_neighbour_diagonal_squares(Side.Black)
+        )
+
+    def test_forward_neighbour_diagonal_squares_2(self):
+        self.assertEqual(
+            {
+                Square(1, 3),
+                Square(1, 1)
+            },
+            Square(2, 2).get_forward_neighbour_diagonal_squares(Side.White)
+        )
+
+    def test_neighbour_with_subsequent(self):
+        self.assertEqual(
+            {
+                (Square(1, 1), Square(0, 0))
+            },
+            Square(2, 2).neighbour_diagonal_squares_with_subsequent
         )

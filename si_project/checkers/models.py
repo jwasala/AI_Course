@@ -73,10 +73,10 @@ class Square:
             )
         return squares
 
-    def get_diagonal_squares(self) -> set['Square']:
+    @property
+    def diagonal_squares(self) -> set['Square']:
         """
-        :param size: number of squares in a board's row
-        :return: all squares that are on the same diagonal (i.e. it is possible for King to get there in one move)
+        :return: set of squares that are on the same diagonal (i.e. it is possible for King to get there in one move)
         """
         squares = set()
         for direction in (1, 1), (1, -1), (-1, 1), (-1, -1):
@@ -88,8 +88,36 @@ class Square:
         squares.remove(self)
         return squares
 
-    def get_neighbor_diagonal_squares(self, ) -> set['Square']:
-        pass
+    @property
+    def neighbour_diagonal_squares(self) -> set['Square']:
+        """
+        :return: set of squares that are on the same diagonal and are direct neigbours of current square
+        """
+        return {s for s in self.diagonal_squares if abs(self.x - s.x) == 1 and abs(self.y - s.y) == 1}
+
+    @property
+    def neighbour_diagonal_squares_with_subsequent(self) -> set[tuple['Square', 'Square']]:
+        """
+        :return: set of pairs (neighbour, neighbour of a neighbour on the same diagonal) squares,
+                 i.e. where would a crowning take place and where would a Man go after crowning
+        """
+        squares = set()
+        for direction in (2, 2), (2, -2), (-2, 2), (-2, -2):
+            x_step, y_step = direction
+            if 0 <= self.x + x_step <= Settings.BoardSize - 1 and 0 <= self.y + y_step <= Settings.BoardSize - 1:
+                squares.add((
+                    Square(self.x + int(x_step / 2), self.y + int(y_step / 2)),
+                    Square(self.x + x_step, self.y + y_step)
+                ))
+        return squares
+
+    def get_forward_neighbour_diagonal_squares(self, side: Side) -> set['Square']:
+        """
+        :param side: side used as a reference
+        :return: list of neigbour diagonal squares that are "in front" given a side (white or black)
+        """
+        x_diff = -1 if side == Side.Black else 1
+        return {s for s in self.diagonal_squares if self.x - s.x == x_diff and abs(self.y - s.y) == 1}
 
     def __str__(self):
         x_fmt = chr(self.x + 97)
