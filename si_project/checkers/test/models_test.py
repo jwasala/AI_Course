@@ -2,8 +2,12 @@ import unittest
 
 from ..models import *
 
+from ..utilities import Settings
+
 
 class TestSquare(unittest.TestCase):
+    def setUp(self) -> None:
+        Settings.BoardSize = 4
 
     def test_from_symbol_1(self):
         self.assertEqual(Square(0, 0), Square.from_symbol('a1'))
@@ -85,4 +89,36 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(
             [],
             Square(4, 5).get_squares_to(Square(4, 5))
+        )
+
+    def test_diagonal_squares_1(self):
+        self.assertEqual(
+            {
+                Square(1, 1),
+                Square(2, 2),
+                Square(3, 3)
+            },
+            Square(0, 0).get_diagonal_squares()
+        )
+
+    def test_diagonal_squares_2(self):
+        self.assertEqual(
+            {
+                Square(0, 0),
+                Square(1, 1),
+                Square(2, 2)
+            },
+            Square(3, 3).get_diagonal_squares()
+        )
+
+    def test_diagonal_squares_3(self):
+        self.assertEqual(
+            {
+                Square(3, 3),
+                Square(1, 1),
+                Square(0, 0),
+                Square(3, 1),
+                Square(1, 3)
+            },
+            Square(2, 2).get_diagonal_squares()
         )
