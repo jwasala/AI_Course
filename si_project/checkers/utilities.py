@@ -1,9 +1,9 @@
 class Symbols:
-    BlackSquare = '⬛'
-    WhiteSquare = '⬜'
-    WhiteMan = '⛀'
+    BlackSquare = '.'
+    WhiteSquare = '.'
+    WhiteMan = '◑'
     WhiteKing = '⛁'
-    BlackMan = '⛂'
+    BlackMan = '●'
     BlackKing = '⛃'
 
 

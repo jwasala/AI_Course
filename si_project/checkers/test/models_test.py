@@ -131,7 +131,7 @@ class TestSquare(unittest.TestCase):
                 Square(3, 1),
                 Square(1, 3)
             },
-            Square(2, 2).neighbour_diagonal_squares
+            Square(2, 2).neighbours
         )
 
     def test_neighbour_diagonal_squares_2(self):
@@ -139,7 +139,7 @@ class TestSquare(unittest.TestCase):
             {
                 Square(1, 1)
             },
-            Square(0, 0).neighbour_diagonal_squares
+            Square(0, 0).neighbours
         )
 
     def test_forward_neighbour_diagonal_squares_1(self):
@@ -148,7 +148,7 @@ class TestSquare(unittest.TestCase):
                 Square(3, 3),
                 Square(3, 1)
             },
-            Square(2, 2).get_forward_neighbour_diagonal_squares(Side.Black)
+            Square(2, 2).get_forward_neighbours(Side.Black)
         )
 
     def test_forward_neighbour_diagonal_squares_2(self):
@@ -157,7 +157,7 @@ class TestSquare(unittest.TestCase):
                 Square(1, 3),
                 Square(1, 1)
             },
-            Square(2, 2).get_forward_neighbour_diagonal_squares(Side.White)
+            Square(2, 2).get_forward_neighbours(Side.White)
         )
 
     def test_neighbour_with_subsequent(self):
@@ -165,5 +165,10 @@ class TestSquare(unittest.TestCase):
             {
                 (Square(1, 1), Square(0, 0))
             },
-            Square(2, 2).neighbour_diagonal_squares_with_subsequent
+            Square(2, 2).neighbours_with_subsequent
         )
+
+
+# class TestBoard(unittest.TestCase):
+#     def test_initial_moves(self):
+#         board = Board.populate_initial_board()
