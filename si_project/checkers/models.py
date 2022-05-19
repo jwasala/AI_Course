@@ -1,5 +1,5 @@
-import copy
 from abc import ABC
+from copy import copy
 from dataclasses import dataclass
 from enum import Enum
 from functools import cached_property, cache
@@ -70,7 +70,7 @@ class SquareUtilities:
         :return: a list of squares on a diagonal between current square (exclusive) and the other square (inclusive)
         """
         if abs(x - other.x) != abs(y - other.y):
-            raise ValueError('Squares between can be only calculated between squares on the same diagonal')
+            return []
         start_from_left = y <= other.y
         start_from_top = x <= other.x
         squares = []
@@ -231,7 +231,6 @@ class Piece:
 
 @dataclass
 class Move(ABC):
-    piece: Piece
     from_sq: Square
 
 
@@ -260,7 +259,7 @@ class CrownMove(Move):
             prev_steps.append(step)
             if step == square:
                 break
-        return CrownMove(self.piece, self.from_sq, prev_steps)
+        return CrownMove(self.from_sq, prev_steps)
 
     def __str__(self):
         return ' -> '.join([sq.__str__() for sq in [self.from_sq] + self.through]) + ' (bicie!)'
@@ -315,20 +314,26 @@ class Board:
                  Sign of rating indicates which side has advantage. A positive number means that the white player has
                     advantage and a negative number means that the black player has advantage.
         """
+        is_any_white = False
+        is_any_black = False
+        total_sum = 0
 
-        if not [piece for piece in self.squares.values() if
-                piece and piece.side == Side.White] or not self.get_possible_moves_of_side(Side.White):
-            return -100
-        elif not [piece for piece in self.squares.values() if
-                  piece and piece.side == Side.Black] or not self.get_possible_moves_of_side(Side.Black):
-            return 100
+        for sq, piece in self.squares.items():
+            if piece:
+                piece_value = sq.sector_multiplier * (3 if piece.type_ == PieceType.King else 1)
+                if piece.side == Side.White:
+                    is_any_white = True
+                else:
+                    is_any_black = True
+                    piece_value *= -1
+                total_sum += piece_value
+
+        if is_any_black and not is_any_white:
+            return -1000
+        elif is_any_white and not is_any_black:
+            return 1000
         else:
-            sq_with_white_pieces = (square for square, piece in self.squares.items() if
-                                    piece and piece.side == Side.White)
-            sq_with_black_pieces = (square for square, piece in self.squares.items() if
-                                    piece and piece.side == Side.Black)
-            return sum(sq.sector_multiplier for sq in sq_with_white_pieces) - sum(
-                sq.sector_multiplier for sq in sq_with_black_pieces)
+            return total_sum
 
     @property
     def is_in_draw_state(self) -> bool:
@@ -424,10 +429,11 @@ class Board:
         """
         this = self.from_num_repr(self.to_num_repr())
         this._move(move.from_sq, move.to_sq)
+        piece = self.squares[move.from_sq]
         try:
-            if move.piece.side == Side.White and move.to_sq.x == 0:
+            if piece.side == Side.White and move.to_sq.x == 0:
                 this._promote(move.to_sq)
-            elif move.piece.side == Side.Black and move.to_sq.x == Settings.BoardSize - 1:
+            elif piece.side == Side.Black and move.to_sq.x == Settings.BoardSize - 1:
                 this._promote(move.to_sq)
         except:
             pass
@@ -450,7 +456,7 @@ class Board:
         if piece.type_ == PieceType.Man:
             for target_sq in square.get_forward_neighbours(piece.side):
                 if not self.squares[target_sq]:
-                    moves.add(SimpleMove(piece, square, target_sq))
+                    moves.add(SimpleMove(square, target_sq))
         else:
             for direction in (1, 1), (1, -1), (-1, 1), (-1, -1):
                 x_step, y_step = direction
@@ -460,29 +466,37 @@ class Board:
                     if current in self.squares and self.squares[current]:
                         break
                     elif current in self.squares:
-                        moves.add(SimpleMove(piece, square, current))
-
-        # Cleanup - remove moves which do not begin with current square.
-        moves = {move for move in moves}
-        for m in copy.copy(moves):
-            if m.from_sq != square:
-                moves.remove(m)
-
+                        moves.add(SimpleMove(square, current))
         return moves
 
-    def _get_all_moves_from_square(self, square) -> set[SimpleMove]:
+    def _get_single_crown_moves_from_square(self, square: Square) -> set[CrownMove]:
         piece = self.squares[square]
         if not piece:
             return set()
+        moves = set()
 
         if piece.type_ == PieceType.Man:
-            return self.get_possible_simple_moves_from_square(square)
+            for neighbour_sq, next_sq in square.neighbours_with_subsequent:
+                if self.squares[neighbour_sq] \
+                        and self.squares[neighbour_sq].side != piece.side \
+                        and not self.squares[next_sq]:
+                    moves.add(CrownMove(square, [next_sq]))
         else:
-            moves = set()
-            for target_sq in square.diagonal_squares:
-                if not self.squares[target_sq]:
-                    moves.add(SimpleMove(piece, square, target_sq))
-            return moves
+            for direction in (1, 1), (1, -1), (-1, 1), (-1, -1):
+                x_step, y_step = direction
+                has_already_jumped_over_enemy = False
+                current = square
+                while 0 < current.x < Settings.BoardSize - 1 and 0 < current.y < Settings.BoardSize - 1:
+                    current = Square(current.x + x_step, current.y + y_step)
+                    if self.squares[current] and self.squares[current].side == piece.side:
+                        break
+                    elif self.squares[current] \
+                            and self.squares[current].side != piece.side \
+                            and not has_already_jumped_over_enemy:
+                        has_already_jumped_over_enemy = True
+                    elif not self.squares[current] and has_already_jumped_over_enemy:
+                        moves.add(CrownMove(square, [current]))
+        return moves
 
     def get_possible_crown_moves_from_square(self, square: Square) -> set[CrownMove]:
         piece = self.squares[square]
@@ -490,103 +504,21 @@ class Board:
             return set()
         moves = set()
 
-        if piece.type_ == PieceType.Man:
-            move_parts_q = [(square, through_sq, target_sq) for through_sq, target_sq in
-                            square.neighbours_with_subsequent]
-            while move_parts_q:
-                from_sq, through_sq, target_sq = move_parts_q.pop()
-
-                if not self.squares.get(through_sq) \
-                        or self.squares[through_sq].side == piece.side \
-                        or self.squares[target_sq]:
-                    continue
-
-                if from_sq == square:
-                    moves.add(CrownMove(piece, square, [target_sq]))
-                else:
-                    for already_started_move in copy.copy(moves):
-                        if len(already_started_move.through) > 5:
-                            continue
-                        if already_started_move.to_sq == from_sq:
-                            already_started_move.through.append(target_sq)
-                        elif from_sq in already_started_move.through:
-                            new_move = already_started_move.get_move_until(from_sq)
-                            new_move.through.append(target_sq)
-                            moves.add(new_move)
-
-                for subsequent_through_sq, subsequent_target_sq in target_sq.neighbours_with_subsequent:
-                    if subsequent_target_sq != from_sq:
-                        if not self.squares.get(subsequent_through_sq) \
-                                or self.squares[subsequent_through_sq].side == piece.side \
-                                or self.squares[subsequent_target_sq]:
-                            continue
-                        move_parts_q.append((target_sq, subsequent_through_sq, subsequent_target_sq))
-        else:
-            # If piece is a King
-            base_crown_moves: set[SimpleMove] = \
-                self._get_all_moves_from_square(square) - self.get_possible_simple_moves_from_square(square)
-            base_crown_moves = {move for move in base_crown_moves if not self.squares[move.to_sq]}
-            move_parts_q = [(square, move.to_sq) for move in base_crown_moves]
-            while move_parts_q:
-                if len(move_parts_q) > 100000:
-                    move_parts_q = []
-                    continue
-                from_sq, target_sq = move_parts_q.pop()
-                sq_between = from_sq.get_squares_to(target_sq)[:-1]
-
-                # Cannot jump over own pieces
-                if any(self.squares[sq] and self.squares[sq].side == piece.side for sq in sq_between):
-                    continue
-
-                # Must jump over at least one opposite piece
-                if not any(self.squares[sq] and self.squares[sq].side != piece.side for sq in sq_between):
-                    continue
-
-                # Must jump to empty sq
-                if self.squares[target_sq]:
-                    continue
-
-                if from_sq == square:
-                    moves.add(CrownMove(piece, square, [target_sq]))
-                else:
-                    for already_started_move in copy.copy(moves):
-                        if already_started_move.to_sq == from_sq:
-                            already_started_move.through.append(target_sq)
-                        elif from_sq in already_started_move.through:
-                            new_move = already_started_move.get_move_until(from_sq)
-                            new_move.through.append(target_sq)
-                            moves.add(new_move)
-
-                # Generate subsequent moves
-                new_board = copy.deepcopy(self)
-                new_board._move(square, target_sq)
-                for sq in square.get_squares_to(target_sq)[:-1]:
-                    if new_board.squares[sq] and new_board.squares[sq].side != piece.side:
-                        new_board.squares[sq] = None
-                    new_moves: set[SimpleMove] = new_board._get_all_moves_from_square(square) - \
-                                                 new_board.get_possible_simple_moves_from_square(square)
-                    new_moves = {move for move in new_moves if not new_board.squares[move.to_sq]}
-                    for move in new_moves:
-                        if move.to_sq != from_sq:
-                            move_parts_q.append((move.from_sq, move.to_sq))
-
-        # Cleanup - remove moves which have same crownings (in same or reverse direction) more than once.
-        moves = {move for move in moves}
-        for crown_move in copy.copy(moves):
-            from_sq = crown_move.from_sq
-            through = crown_move.through
-            sub_moves = list(zip([from_sq] + through, through))
-            rev_sub_moves = [(m2, m1) for m1, m2 in sub_moves]
-
-            if len(sub_moves) != len(set(sub_moves)) or any(sub_move in rev_sub_moves for sub_move in sub_moves):
-                moves.remove(crown_move)
-
-        # Cleanup - remove moves which do not begin with current square.
-        moves = {move for move in moves}
-        for crown_move in copy.copy(moves):
-            if crown_move.from_sq != square:
-                moves.remove(crown_move)
-
+        def _explore(so_far: CrownMove | None, start: Square, board: Board):
+            single_crown_moves = board._get_single_crown_moves_from_square(start)
+            if not single_crown_moves:
+                if so_far:
+                    moves.add(so_far)
+            else:
+                for single_crown_move in single_crown_moves:
+                    next_board = board.move(single_crown_move)
+                    if so_far:
+                        new_so_far = copy(so_far)
+                        new_so_far.through.append(single_crown_move.through[0])
+                    else:
+                        new_so_far = CrownMove(start, [single_crown_move.through[0]])
+                    _explore(new_so_far, single_crown_move.through[0], next_board)
+        _explore(None, square, self)
         return moves
 
     def get_possible_moves_from_square(self, square) -> set[Move]:
