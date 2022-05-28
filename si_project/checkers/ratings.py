@@ -72,3 +72,26 @@ def forward_extra_rating(board) -> int:
         return 1000
     else:
         return total_sum
+
+
+def very_basic(board) -> int:
+    is_any_white = False
+    is_any_black = False
+    total_sum = 0
+
+    for sq, piece in board.squares.items():
+        if piece:
+            piece_value = (2 if piece.type_ == PieceType.King else 1)
+            if piece.side == Side.White:
+                is_any_white = True
+            else:
+                is_any_black = True
+                piece_value *= -1
+            total_sum += piece_value
+
+    if is_any_black and not is_any_white:
+        return -1000
+    elif is_any_white and not is_any_black:
+        return 1000
+    else:
+        return total_sum
