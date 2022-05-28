@@ -7,9 +7,9 @@ from itertools import combinations
 from si_project.checkers.models import Board, Side
 from si_project.checkers.alphabeta import alphabeta
 from si_project.checkers.minimax import minimax
-from si_project.checkers.ratings import base_rating, forward_extra_rating, no_king_multip_rating
+from si_project.checkers.ratings import base_rating, forward_extra_rating, no_king_multip_rating, very_basic
 
-f = open('output_checkers.txt', mode='w')
+f = open('output_checkers2.txt', mode='w')
 
 def print(s):
     builtins.print(s)
@@ -30,12 +30,10 @@ def main():
     # print('Początek gry')
     game_i = 0
 
-    for depth in (3, 5, 10, 15, 25, 35):
-        for algorithm in (alphabeta, minimax):
-            if algorithm == minimax and depth != 3:
-                continue
-            for rating_white, rating_black in combinations((base_rating, forward_extra_rating, no_king_multip_rating), r=2):
-                games_left = 5
+    for depth in (3,):
+        for algorithm in (minimax,):
+            for rating_white, rating_black in ((base_rating, very_basic), (forward_extra_rating, very_basic), (no_king_multip_rating, very_basic)):
+                games_left = 1
                 while games_left > 0:
                     start = datetime.now()
                     b = Board.populate_initial_board()
@@ -49,6 +47,8 @@ def main():
                                 state = 'Biale wygraly'
                             elif b.rating == -1000:
                                 state = 'Czarne wygraly'
+                            elif b.is_in_draw_state:
+                                state = 'remis'
                             else:
                                 state = None
                             if state:
@@ -67,7 +67,7 @@ def main():
                                 moves = list(b.get_possible_moves_of_side(Side.Black))
                                 if not moves:
                                     break
-                                values = [algorithm(Side.White, b.move(move), depth, rating_black) for move in moves]
+                                values = [algorithm(Side.White, b.move(move), 3, rating_black) for move in moves]
                                 best_move = moves[values.index(min(values))]
                                 b = b.move(best_move)
                                 print(','.join([
@@ -78,7 +78,7 @@ def main():
                                     str((datetime.now() - start).total_seconds() * 1000),
                                     str(b.rating),
                                     algorithm.__name__,
-                                    str(depth)
+                                    '3'
                                 ]))
                             else:
                                 moves = list(b.get_possible_moves_of_side(Side.White))
@@ -99,12 +99,13 @@ def main():
                                 ]))
                             moves_count += 1
                             current_side = current_side.next
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
 
 
 if __name__ == '__main__':
     try:
         main()
-    except:
+    except Exception as e:
+        print(e)
         f.close()
