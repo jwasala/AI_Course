@@ -328,18 +328,18 @@ class Board:
                     piece_value *= -1
                 total_sum += piece_value
 
-        if is_any_black and not is_any_white:
+        if (is_any_black and not is_any_white) or not self.get_possible_moves_of_side(Side.White):
             return -1000
-        elif is_any_white and not is_any_black:
+        elif is_any_white and not is_any_black or not self.get_possible_moves_of_side(Side.Black):
             return 1000
         else:
             return total_sum
 
     @property
     def is_in_draw_state(self) -> bool:
+        if len(self.moves) >= 100:
+            return True
         return len(self.moves) >= 15 \
-               and not any([piece.type_ == PieceType.Man for piece in self.squares.values()]) \
-               and sum((1 if p.side == Side.White else -1 for p in self.squares.values())) == 0 \
                and all([isinstance(move, SimpleMove) for move in self.moves[:-15]])
 
     @property
