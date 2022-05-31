@@ -1,3 +1,4 @@
+from copy import deepcopy
 from dataclasses import dataclass
 
 
@@ -10,7 +11,7 @@ class BookRaw:
     - publication_date to publication_year (trunkate and parse int)
     """
     article_id: int | None
-    freebase_id: int | None
+    freebase_id: str | None
     title: str | None
     author: str | None
     publication_year: int | None
@@ -26,9 +27,15 @@ class Book:
     - values of other fields are non nullable
     """
     article_id: int
-    freebase_id: int
+    freebase_id: str
     title: str
     author: str
-    publication_year: int
     genre: str
     plot_summary: str
+
+    ignored_fields = ('publication_year', 'author',)
+
+    def replace(self, attr, new_val):
+        book = deepcopy(self)
+        setattr(book, attr, new_val)
+        return book

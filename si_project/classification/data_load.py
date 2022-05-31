@@ -1,9 +1,9 @@
 import json
-from logging import getLogger
+import logging
 
 from .model import BookRaw
 
-logger = getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def load_books(stream) -> list[BookRaw]:
@@ -13,7 +13,7 @@ def load_books(stream) -> list[BookRaw]:
     for line_i, line in enumerate(stream):
         # Split line into columns
         try:
-            article_id_raw, freebase_id_raw, title, author, pub_date_raw, genres, plot = line.split('\t')
+            article_id_raw, freebase_id, title, author, pub_date_raw, genres, plot = line.split('\t')
         except ValueError as ve:
             logger.warning(f'Couldn\'t unpack line {line_i}, values "{line}": {ve}')
             exception_count += 1
@@ -21,7 +21,6 @@ def load_books(stream) -> list[BookRaw]:
         # Parse integers
         try:
             article_id = int(article_id_raw) if article_id_raw else None
-            freebase_id = int(freebase_id_raw) if freebase_id_raw else None
         except ValueError as ve:
             logger.warning(f'Couldn\'t parse integer value in line {line_i}, values "{line}": {ve}')
             exception_count += 1
@@ -36,7 +35,7 @@ def load_books(stream) -> list[BookRaw]:
         # Parse genres
         try:
             if genres:
-                genres = json.loads(genres).values()
+                genres = list(json.loads(genres).values())
             else:
                 genres = []
         except Exception as e:

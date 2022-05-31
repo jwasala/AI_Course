@@ -9,7 +9,7 @@ from si_project.checkers.alphabeta import alphabeta
 from si_project.checkers.minimax import minimax
 from si_project.checkers.ratings import base_rating, forward_extra_rating, no_king_multip_rating, very_basic
 
-f = open('output_checkers2.txt', mode='w')
+f = open('../docs/checkers/output_checkers2.txt', mode='w')
 
 def print(s):
     builtins.print(s)
